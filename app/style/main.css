@@ -8,4 +8,5 @@ body {
   left: auto; }
 
 .Tour {
+  display: -ms-flexbox;
   display: flex; }
