@@ -113,6 +113,8 @@ gulp.task('default', function (callback) {
 
 
 gulp.task('build', function (callback) {
+	runSequence('clean', 'sass',
+		['useref', 'images', 'fonts'],
 		callback
 	)
 });
