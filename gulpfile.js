@@ -10,6 +10,7 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	gulpIf = require('gulp-if'),
 	cssnano = require('gulp-cssnano'),
+	svgstore = require('gulp-svgstore'),
 	imagemin = require('gulp-imagemin'),
 	cache = require('gulp-cache'),
 	del = require('del'),
@@ -24,11 +25,11 @@ var gulp = require('gulp'),
  * })
  */
 
-//sass
+//CSS编译
 gulp.task('sass', function() {
-	return gulp.src('app/sass/**/*.scss')
+	return gulp
+		.src('app/sass/**/*.scss')
 		.pipe(sass())                      //编译sass
-
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions'], //自动加前缀
 			cascade: false
@@ -39,6 +40,14 @@ gulp.task('sass', function() {
 		}))
 });
 
+//svg图标合并
+gulp.task('svgstore', function () {
+	return gulp
+		.src('app/icons/*.svg')
+		.pipe(imagemin())                        //压缩svg
+		.pipe(svgstore())                        //合并svg
+		.pipe(gulp.dest('app/images/icons'));
+});
 
 //browserSync 自动刷新web服务器
 gulp.task('browserSync', function() {
@@ -51,7 +60,8 @@ gulp.task('browserSync', function() {
 
 //压缩合并
 gulp.task('useref', function(){
-	return gulp.src('app/*.html')
+	return gulp
+		.src('app/*.html')
 		.pipe(useref())                     //合并
 		.pipe(gulpIf('*.js', uglify()))     //压缩JS
 		.pipe(gulpIf('*.css', cssnano()))   //压缩CSS
@@ -60,27 +70,29 @@ gulp.task('useref', function(){
 
 //压缩图片
 gulp.task('images', function(){
-	return gulp.src('app/images/**/*.+(png|jpg|gif|svg)')
+	return gulp
+		.src(['app/images/**/*.+(png|jpg|gif|svg)', '!app/images/icons/**/*'])
 		.pipe(imagemin())                    //压缩图片
 		.pipe(gulp.dest('dist/images'))
 });
 
-//复制字体
-gulp.task('fonts', function() {
-	return gulp.src('app/fonts/**/*')
-		.pipe(gulp.dest('dist/fonts'))
+//复制图标
+gulp.task('copyIcon', function() {
+	return gulp
+		.src('app/images/icons/**/*')
+		.pipe(gulp.dest('dist/images/icons'))
 });
-
 
 //清空目录
 gulp.task('clean', function(callback) {
 	del('dist');
 	return cache.clearAll(callback);
-})
+});
 
 //清空目录，不包含图片
 gulp.task('clean:dist', function(callback){
-	del(['dist/**/*', '!dist/images', '!dist/images/**/*'], callback)
+	del(['dist/**/*', '!dist/images', '!dist/images/**/*']);
+	return cache.clearAll(callback);
 });
 
 
@@ -90,8 +102,8 @@ gulp.task('clean:dist', function(callback){
 
 //监听
 gulp.task('watch', ['browserSync', 'sass'], function(){
-	gulp.watch('app/sass/**/*.scss', ['sass']);           //监听scss文件变化
-	gulp.watch('app/*.html', browserSync.reload);      //监听html文件变化
+	gulp.watch('app/sass/**/*.scss', ['sass']);                //监听scss文件变化
+	gulp.watch('app/*.html', browserSync.reload);              //监听html文件变化
 	gulp.watch('app/scripts/**/*.js', browserSync.reload);     //监听JS文件变化
 });
 
@@ -113,8 +125,8 @@ gulp.task('default', function (callback) {
 
 
 gulp.task('build', function (callback) {
-	runSequence('clean', 'sass',
-		['useref', 'images', 'fonts'],
+	runSequence('clean:dist', 'sass',
+		['useref', 'images', 'copyIcon'],
 		callback
 	)
 });
