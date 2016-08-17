@@ -14,8 +14,8 @@ var gulp = require('gulp'),
 	imagemin = require('gulp-imagemin'),
 	cache = require('gulp-cache'),
 	del = require('del'),
-	runSequence = require('run-sequence');
-
+	runSequence = require('run-sequence'),
+	ghPages = require('gulp-gh-pages');
 
 /** Gulp task syntax
  * gulp.task('task-name', function () {
@@ -129,4 +129,11 @@ gulp.task('build', function (callback) {
 		['useref', 'images', 'copyIcon'],
 		callback
 	)
+});
+
+
+//部署到ghPages
+gulp.task('deploy', function() {
+	return gulp.src('./dist/**/*')
+		.pipe(ghPages());
 });
