@@ -15,6 +15,7 @@ var gulp = require('gulp'),
 	cache = require('gulp-cache'),
 	del = require('del'),
 	runSequence = require('run-sequence'),
+	ts = require('gulp-typescript'),
 	ghPages = require('gulp-gh-pages');
 
 /** Gulp task syntax
@@ -39,6 +40,19 @@ gulp.task('sass', function() {
 			stream: true
 		}))
 });
+
+
+//TS编译
+gulp.task('ts', function () {
+	return gulp.src('app/ts/**/*.ts')
+		.pipe(ts({
+			noImplicitAny: true
+			//out: 'output.js'
+		}))
+		.pipe(gulp.dest('app/scripts'));
+});
+
+
 
 //svg图标合并
 gulp.task('svgstore', function () {
