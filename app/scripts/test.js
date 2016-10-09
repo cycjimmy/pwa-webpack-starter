@@ -1,4 +1,2 @@
-/**
- * Created by cyc on 2016/8/18.
- */
+//test ts
 var a = 1;

@@ -90,11 +90,15 @@ gulp.task('images', function(){
 		.pipe(gulp.dest('dist/images'))
 });
 
-//复制图标
-gulp.task('copyIcon', function() {
+//复制其他
+gulp.task('copyOther', function() {
 	return gulp
-		.src('app/images/icons/**/*')
-		.pipe(gulp.dest('dist/images/icons'))
+		.src([
+			'app/images/icons/**/*'   //复制图标
+		], {
+			base: 'app'
+		})
+		.pipe(gulp.dest('dist'))
 });
 
 //清空目录
