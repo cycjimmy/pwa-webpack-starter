@@ -1,6 +1,25 @@
-@mixin absolute($t, $r, $b, $l) {
-  top: $t;
-  right: $r;
-  bottom: $b;
-  left: $l;
+//中央居中
+//$offset 偏移量
+@mixin fix-center($offset: -100%, $ex: false, $l: false, $t: false, $r: false, $b: false) {
+  position: absolute;
+  margin: auto;
+  @if ($ex == false) {
+    left: $offset;
+    top: $offset;
+    right: $offset;
+    bottom: $offset;
+  } @else {
+    @if ($l) {
+      left: $l;
+    }
+    @if ($t) {
+      top: $t;
+    }
+    @if ($r) {
+      right: $r;
+    }
+    @if ($b) {
+      bottom: $b;
+    }
+  }
 }

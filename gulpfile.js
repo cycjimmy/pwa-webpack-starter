@@ -15,6 +15,7 @@ var gulp = require('gulp'),
 	cache = require('gulp-cache'),
 	del = require('del'),
 	runSequence = require('run-sequence'),
+	ts = require('gulp-typescript'),
 	ghPages = require('gulp-gh-pages');
 
 /** Gulp task syntax
@@ -39,6 +40,23 @@ gulp.task('sass', function() {
 			stream: true
 		}))
 });
+
+
+//TS编译
+gulp.task('ts', function () {
+	return gulp
+		.src('app/ts/**/*.ts')
+		.pipe(ts({
+			noImplicitAny: true
+			//out: 'output.js'
+		}))
+		.pipe(gulp.dest('app/scripts'))    //输出js
+		.pipe(browserSync.reload({         //刷新web服务器
+			stream: true
+		}))
+});
+
+
 
 //svg图标合并
 gulp.task('svgstore', function () {
@@ -76,11 +94,15 @@ gulp.task('images', function(){
 		.pipe(gulp.dest('dist/images'))
 });
 
-//复制图标
-gulp.task('copyIcon', function() {
+//复制其他
+gulp.task('copyOther', function() {
 	return gulp
-		.src('app/images/icons/**/*')
-		.pipe(gulp.dest('dist/images/icons'))
+		.src([
+			'app/images/icons/**/*'   //复制图标
+		], {
+			base: 'app'
+		})
+		.pipe(gulp.dest('dist'))
 });
 
 //清空目录
@@ -101,10 +123,10 @@ gulp.task('clean:dist', function(callback){
  */
 
 //监听
-gulp.task('watch', ['browserSync', 'sass'], function(){
+gulp.task('watch', ['browserSync', 'sass', 'ts'], function(){
 	gulp.watch('app/sass/**/*.scss', ['sass']);                //监听scss文件变化
+	gulp.watch('app/ts/**/*.ts', ['ts']);                      //监听TS文件变化
 	gulp.watch('app/*.html', browserSync.reload);              //监听html文件变化
-	gulp.watch('app/scripts/**/*.js', browserSync.reload);     //监听JS文件变化
 });
 
 
@@ -118,14 +140,14 @@ gulp.task('watch', ['browserSync', 'sass'], function(){
 
 
 gulp.task('default', function (callback) {
-	runSequence(['sass','browserSync', 'watch'],
+	runSequence(['sass', 'ts', 'browserSync', 'watch'],
 		callback
 	)
 });
 
 
 gulp.task('build', function (callback) {
-	runSequence('clean:dist', 'sass',
+	runSequence('clean:dist', 'sass', 'ts',
 		['useref', 'images', 'copyIcon'],
 		callback
 	)

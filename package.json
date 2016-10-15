@@ -1,33 +1,42 @@
 {
   "name": "gulp-temp",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "description": "a gulp template",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cycjimmy/gulp-temp"
-  },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
     "svg": "gulp svgstore",
-    "build": "gulp build"
+    "build": "gulp build",
+    "deploy": "gulp deploy"
   },
-  "author": "cycjimmy",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cycjimmy/gulp-temp.git"
+  },
+  "keywords": ["gulp", "typescript"],
+  "author": "cycjimmy <cycjimmy@gmail.com> (https://github.com/cycjimmy)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cycjimmy/gulp-temp/issues"
+  },
+  "homepage": "https://github.com/cycjimmy/gulp-temp#readme",
   "devDependencies": {
-    "browser-sync": "^2.14.0",
-    "del": "^2.2.1",
+    "browser-sync": "^2.17.3",
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
+    "gulp-autoprefixer": "^3.1.1",
     "gulp-cache": "^0.4.5",
     "gulp-cssnano": "^2.1.2",
     "gulp-gh-pages": "^0.5.4",
     "gulp-if": "^2.0.1",
-    "gulp-imagemin": "^3.0.2",
+    "gulp-imagemin": "^3.0.3",
     "gulp-sass": "^2.3.2",
     "gulp-svgstore": "^6.0.0",
+    "gulp-typescript": "^3.0.2",
     "gulp-uglify": "^2.0.0",
-    "gulp-useref": "^3.1.0",
-    "run-sequence": "^1.2.2"
+    "gulp-useref": "^3.1.2",
+    "run-sequence": "^1.2.2",
+    "typescript": "^2.0.3"
   }
 }
