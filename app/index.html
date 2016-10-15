@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>gulp-temp</title>
 
 	<!--build:css style/styles.min.css-->
 	<link rel="stylesheet" href="style/main.css">
@@ -10,20 +10,41 @@
 
 </head>
 <body>
-<h1>Welcome!</h1>
-<div class="foo">
-	<svg class="icon" aria-hidden="true">
-		<use xlink:href="./images/icons/icons.svg#pic"></use>
-	</svg>
-	图标
-</div>
+<header>
+	<h1>gulp-temp</h1>
+</header>
+
+<main>
+	<h2>welcome!</h2>
+	<ul class="foo">
+		<li>
+			<svg class="icon" aria-hidden="true">
+				<use xlink:href="./images/icons/icons.svg#pic"></use>
+			</svg>
+			<span>pic</span>
+		</li>
+
+		<li>
+			<svg class="icon" aria-hidden="true">
+				<use xlink:href="./images/icons/icons.svg#edit"></use>
+			</svg>
+			<span>edit</span>
+		</li>
+
+		<li>
+			<svg class="icon" aria-hidden="true">
+				<use xlink:href="./images/icons/icons.svg#video"></use>
+			</svg>
+			<span>video</span>
+		</li>
+	</ul>
+</main>
+
 <div id="show_load"></div>
 <div class="Tour"></div>
 
 <!--build:js scripts/main.min.js -->
-<script src="scripts/sub.js"></script>
 <script src="scripts/main.js"></script>
-<script src="scripts/test.js"></script>
 <!--endbuild-->
 </body>
 </html>

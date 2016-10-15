@@ -1,3 +1,4 @@
+@import "reset";
 @import 'variables';
 @import 'utilities';
 
@@ -5,18 +6,50 @@ body {
 	background-color: $color-teal-base;
 }
 
-.foo {
-	@include absolute(0, 0, auto, auto);
+header {
+	border-bottom: 2px solid white;
+	color: white;
+
+	h1 {
+		text-align: center;
+		padding: 10px;
+	}
 }
 
-.Tour {
+main {
+	position: relative;
+	height: 60vh;
+	border-bottom: 2px solid white;
+
+	color: white;
+
+	h2 {
+		padding: 5px;
+		text-align: center;
+	}
+}
+
+.foo {
+	@include fix-center(0);
+	width: 50%;
+	height: 50%;
 	display: flex;
+	flex-direction: column;
+	border: 1px solid white;
+
+	li {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
 .icon {
-	/* 通过设置 font-size 来改变图标大小 */
 	width: 20px;
 	height: 20px;
+	margin-right: 5px;
+
 	/* 图标和文字相邻时，垂直对齐 */
 	vertical-align: -4px;
 	/* 通过设置 color 来改变 SVG 的颜色/fill */
@@ -25,3 +58,10 @@ body {
 	   normalize.css 中也包含这行 */
 	overflow: hidden;
 }
+
+#show_load {
+	padding: 5px;
+	color: white;
+	text-align: center;
+}
+
