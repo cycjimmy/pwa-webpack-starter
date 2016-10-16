@@ -1,0 +1,11 @@
+//- 头部文件
+//- 在主页中使用include includes/head.pug调用
+- var title = 'gulp-temp'
+head
+    meta(charset='utf-8')
+    title #{title}
+
+    // build:css style/styles.min.css
+    link(rel='stylesheet' href='style/main.css')
+    // endbuild
+
