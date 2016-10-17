@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-
-	<link rel="stylesheet" href="style/styles.min.css">
-
-</head>
-<body>
-<h1>Welcome!</h1>
-<div class="foo">
-	<svg class="icon" aria-hidden="true">
-		<use xlink:href="./images/icons/icons.svg#pic"></use>
-	</svg>
-	图标
-</div>
-<div class="Tour"></div>
-
-<script src="scripts/main.min.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>gulp-temp</title>
+    <link rel="stylesheet" href="style/styles.min.css">
+  </head>
+  <body>
+    <header>
+      <h1>gulp-temp</h1>
+    </header>
+    <main>
+      <h2>welcome!</h2>
+      <ul class="foo">
+        <li>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="./images/icons/icons.svg#pic"></use>
+          </svg><span>pic</span>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="./images/icons/icons.svg#edit"></use>
+          </svg><span>edit</span>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="./images/icons/icons.svg#video"></use>
+          </svg><span>video</span>
+        </li>
+      </ul>
+    </main>
+    <div id="show_load"></div>
+    <div class="Tour"></div>
+    <script src="scripts/main.min.js"></script>
+  </body>
 </html>
