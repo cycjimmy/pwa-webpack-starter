@@ -84,7 +84,10 @@ gulp.task('svgstore', function () {
 gulp.task('browserSync', function () {
   browserSync({
     server: {
-      baseDir: 'app'             //目录
+      baseDir: 'app',                                    //目录
+      routes: {
+        "/bower_components": "bower_components"
+      }
     }
   })
 });
@@ -93,9 +96,16 @@ gulp.task('browserSync', function () {
 gulp.task('useref', function () {
   return gulp
     .src('app/*.html')
-    .pipe(useref())                     //合并
-    .pipe(gulpIf('*.js', uglify()))     //压缩JS
-    .pipe(gulpIf('*.css', cssnano()))   //压缩CSS
+    .pipe(useref(                                       //合并
+      {
+        transformPath: function (filePath) {             //修改路径
+          return filePath
+            .replace('bower_components', '../bower_components')
+        }
+      }
+    ))
+    .pipe(gulpIf('*.js', uglify()))                     //压缩JS
+    .pipe(gulpIf('*.css', cssnano()))                   //压缩CSS
     .pipe(gulp.dest('dist'));
 });
 
@@ -111,7 +121,7 @@ gulp.task('images', function () {
 gulp.task('copyOther', function () {
   return gulp
     .src([
-      'app/images/icons/**/*'   //复制图标
+      'app/images/icons/**/*'              //复制图标
     ], {
       base: 'app'
     })
@@ -159,8 +169,8 @@ gulp.task('default', function (callback) {
 
 
 gulp.task('build', function (callback) {
-  runSequence('clean:dist', 'sass', 'ts', 'pug'
-      ['useref', 'images', 'copyIcon'],
+  runSequence('clean:dist', 'sass', 'ts', 'pug',
+    ['useref', 'images', 'copyOther'],
     callback
   )
 });

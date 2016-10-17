@@ -1,6 +1,6 @@
 {
   "name": "gulp-temp",
-  "version": "0.2.0-dev",
+  "version": "0.2.1",
   "description": "a gulp template",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,8 @@
   "keywords": [
     "gulp",
     "typescript",
-    "pug"
+    "pug",
+    "bower"
   ],
   "author": "cycjimmy <cycjimmy@gmail.com> (https://github.com/cycjimmy)",
   "license": "MIT",
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/cycjimmy/gulp-temp#readme",
   "dependencies": {
+    "bower": "^1.7.9",
     "browser-sync": "^2.17.3",
     "gulp-gh-pages": "^0.5.4",
     "gulp-pug": "^3.1.0",

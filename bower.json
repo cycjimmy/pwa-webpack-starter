@@ -1,0 +1,25 @@
+{
+  "name": "gulp-temp",
+  "description": "a gulp template",
+  "main": "index.js",
+  "authors": [
+    "cycjimmy <cycjimmy@gmail.com> (https://github.com/cycjimmy)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "gulp",
+    "typescript",
+    "pug"
+  ],
+  "homepage": "https://github.com/cycjimmy/gulp-temp",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
