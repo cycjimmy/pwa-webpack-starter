@@ -1,40 +1,40 @@
 doctype html
 html(lang='zh-cn')
-    include includes/head
+  include includes/head
 
-    body
-        header
-            h1 gulp-temp
+  body
+    header
+      h1 gulp-temp
 
-        main
-            h2 welcome!
+    main
+      h2 welcome!
 
-            -
-                var svgItems =
-                [{
-                name:'pic',
-                svgId:'pic'
-                },
-                {
-                name:'edit',
-                svgId:'edit'
-                },
-                {
-                name:'video',
-                svgId:'video'
-                }];
+      -
+        var svgItems =
+        [{
+        name:'pic',
+        svgId:'pic'
+        },
+        {
+        name:'edit',
+        svgId:'edit'
+        },
+        {
+        name:'video',
+        svgId:'video'
+        }];
 
-            ul.foo
-                each svgItem in svgItems
-                    li
-                        svg.icon(aria-hidden='true')
-                            use(xlink:href='./images/icons/icons.svg#'+ svgItem.svgId)
-                        span #{svgItem.name}
+      ul.foo
+        each svgItem in svgItems
+          li
+            svg.icon(aria-hidden='true')
+              use(xlink:href='./images/icons/icons.svg#' + svgItem.svgId)
+            span #{svgItem.name}
 
-        #show_load
-        .Tour
+    #show_load
+    .Tour
 
-        // build:js scripts/main.min.js
-        script(src='scripts/main.js')
-        // endbuild
+    // build:js scripts/main.min.js
+    script(src='scripts/main.js')
+    // endbuild
 
