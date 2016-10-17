@@ -98,6 +98,7 @@ gulp.task('useref', function () {
     .src('app/*.html')
     .pipe(useref(                                       //合并
       {
+        newLine: ';',                                    //分号连接符
         transformPath: function (filePath) {             //修改路径
           return filePath
             .replace('bower_components', '../bower_components')
