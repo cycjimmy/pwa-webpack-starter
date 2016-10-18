@@ -1,0 +1,21 @@
+{
+  "title": "gulp-temp",
+  "description": "gulp temp",
+  "keywords": [
+    "gulp"
+  ],
+  "svgItems": [
+    {
+      "name": "pic",
+      "svgId": "pic"
+    },
+    {
+      "name": "edit",
+      "svgId": "edit"
+    },
+    {
+      "name": "video",
+      "svgId": "video"
+    }
+  ]
+}

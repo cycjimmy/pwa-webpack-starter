@@ -1,0 +1,20 @@
+doctype html
+html(lang='zh-cn')
+  head
+    meta(charset='utf-8')
+    block title
+    block meta
+        meta(name='description', content=description)
+
+
+    block link
+    // build:css style/styles.min.css
+    link(rel='stylesheet' href='style/main.css')
+    // endbuild
+
+  body
+    block body
+
+
+
+

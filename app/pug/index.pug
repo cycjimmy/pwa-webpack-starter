@@ -1,41 +1,22 @@
-doctype html
-html(lang='zh-cn')
-  include includes/head
+//-引入模板
+extends layout/_layout.pug
+block title
+  title= title
 
-  body
-    header
-      h1 gulp-temp
+//-追加meta
+block append meta
+  meta(name='keywords', content=keywords)
 
-    main
-      h2 welcome!
 
-      -
-        var svgItems =
-        [{
-        name:'pic',
-        svgId:'pic'
-        },
-        {
-        name:'edit',
-        svgId:'edit'
-        },
-        {
-        name:'video',
-        svgId:'video'
-        }];
+block body
+  header
+    include includes/header.pug
 
-      ul.foo
-        each svgItem in svgItems
-          li
-            svg.icon(aria-hidden='true')
-              use(xlink:href='./images/icons/icons.svg#' + svgItem.svgId)
-            span #{svgItem.name}
+  main
+    include includes/main.pug
 
-    #show_load
-    .Tour
 
-    // build:js scripts/main.min.js
-    script(src='bower_components/jquery/dist/jquery.min.js')
-    script(src='scripts/main.js')
-    // endbuild
-
+  //build:js scripts/main.min.js
+  script(src='bower_components/jquery/dist/jquery.min.js')
+  script(src='scripts/main.js')
+  //endbuild
