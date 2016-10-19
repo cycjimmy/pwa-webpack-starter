@@ -22,9 +22,6 @@ const
   pug = require('gulp-pug'),
   plumber = require('gulp-plumber'),
   data = require('gulp-data'),
-  glob = require('glob'),
-  es = require('event-stream'),
-  path = require('path'),
   job = require('gulp-pug-job');
 
 
@@ -109,19 +106,15 @@ gulp.task('pug', function () {
 
 //pug2js模板
 gulp.task('jsTemplates', function () {
-  var files = glob.sync(srcPaths.pugTemp),
-    streams = files.map(function (file) {
       return gulp
-        .src(file)
+        .src(srcPaths.pugTemp)
         .pipe(pug({
           client: true,
           externalRuntime: true,
           //pretty: true,
           compileDebug: false
-          //name: path.basename(file, '.pug')
         }))
         .pipe(job({
-          // default options:
           parent: 'window',
           namespace: 'templates',
           separator: '-'
@@ -129,10 +122,7 @@ gulp.task('jsTemplates', function () {
         .pipe(gulp.dest(srcPaths.scripts + 'templates'))
         .pipe(browserSync.reload({         //刷新web服务器
           stream: true
-        }));
-    });
-
-  return es.merge.apply(es, streams);
+        }))
 });
 
 
