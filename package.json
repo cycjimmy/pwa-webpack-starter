@@ -37,6 +37,8 @@
   },
   "devDependencies": {
     "del": "^2.2.2",
+    "event-stream": "^3.3.4",
+    "glob": "^7.1.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-cache": "^0.4.5",
@@ -44,6 +46,8 @@
     "gulp-data": "^1.2.1",
     "gulp-if": "^2.0.1",
     "gulp-imagemin": "^3.0.3",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug-job": "0.0.2",
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",
     "pug-cli": "^1.0.0-alpha6",

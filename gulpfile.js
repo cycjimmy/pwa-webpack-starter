@@ -2,7 +2,9 @@
  * Created by cycjimmy on 2016/7/13.
  */
 
-var gulp = require('gulp'),
+const
+  fs = require('fs'),
+  gulp = require('gulp'),
   sass = require('gulp-sass'),
   autoprefixer = require('gulp-autoprefixer'),
   browserSync = require('browser-sync'),
@@ -17,7 +19,35 @@ var gulp = require('gulp'),
   runSequence = require('run-sequence'),
   ts = require('gulp-typescript'),
   ghPages = require('gulp-gh-pages'),
-  pug = require('gulp-pug');
+  pug = require('gulp-pug'),
+  plumber = require('gulp-plumber'),
+  data = require('gulp-data'),
+  glob = require('glob'),
+  es = require('event-stream'),
+  path = require('path'),
+  job = require('gulp-pug-job');
+
+
+//入口路径
+const srcPaths = {
+  ts: 'app/ts/**/*.ts',                             //ts文件
+  sass: 'app/sass/**/*.scss',                       //sass文件
+  pug: [                                            //静态pug模板
+    'app/pug/**/*.pug',
+    '!app/pug/templates/*.pug'
+  ],
+  pugTemp: 'app/pug/templates/*.pug',               //pug2js模板
+  scripts: 'app/scripts/',                          //js文件路径
+  style: 'app/style/',                              //css文件路径
+  icons: 'app/icons/*',                             //输入图标源
+  img: [                                            //输入图片源
+    'app/images/**/*.+(png|jpg|gif|svg)',
+    '!app/images/icons/**/*'
+  ],
+  data: 'app/data/',                                //输入data源
+  bower: "bower_components"                         //bower包入口
+};
+
 
 /** Gulp task syntax
  * gulp.task('task-name', function () {
@@ -27,13 +57,14 @@ var gulp = require('gulp'),
  * })
  */
 
+
 //CSS编译
 gulp.task('sass', function () {
   return gulp
-    .src('app/sass/**/*.scss')
+    .src(srcPaths.sass)
     .pipe(sass())                      //编译sass
     .pipe(autoprefixer({
-      browsers: ['last 2 versions'], //自动加前缀
+      browsers: ['last 4 versions'],   //自动加前缀
       cascade: false
     }))
     .pipe(gulp.dest('app/style'))      //输出css
@@ -42,11 +73,10 @@ gulp.task('sass', function () {
     }))
 });
 
-
 //TS编译
 gulp.task('ts', function () {
   return gulp
-    .src('app/ts/**/*.ts')
+    .src(srcPaths.ts)
     .pipe(ts({
       noImplicitAny: true
       //out: 'output.js'
@@ -58,10 +88,16 @@ gulp.task('ts', function () {
 });
 
 
-//pug输出
-gulp.task('pug', function buildHTML() {
+//pug输出html
+gulp.task('pug', function () {
   return gulp
-    .src('app/pug/*.pug')
+    .src(srcPaths.pug)
+    .pipe(data(function (file) {
+      return {
+        'statics': JSON.parse(fs.readFileSync('app/data/statics.json')),
+      }
+    }))
+    .pipe(plumber())
     .pipe(pug({
       pretty: true
     }))
@@ -71,10 +107,39 @@ gulp.task('pug', function buildHTML() {
     }))
 });
 
+//pug2js模板
+gulp.task('jsTemplates', function () {
+  var files = glob.sync(srcPaths.pugTemp),
+    streams = files.map(function (file) {
+      return gulp
+        .src(file)
+        .pipe(pug({
+          client: true,
+          externalRuntime: true,
+          //pretty: true,
+          compileDebug: false
+          //name: path.basename(file, '.pug')
+        }))
+        .pipe(job({
+          // default options:
+          parent: 'window',
+          namespace: 'templates',
+          separator: '-'
+        }))
+        .pipe(gulp.dest(srcPaths.scripts + 'templates'))
+        .pipe(browserSync.reload({         //刷新web服务器
+          stream: true
+        }));
+    });
+
+  return es.merge.apply(es, streams);
+});
+
+
 //svg图标合并
 gulp.task('svgstore', function () {
   return gulp
-    .src('app/icons/*.svg')
+    .src(srcPaths.icons)
     .pipe(imagemin())                        //压缩svg
     .pipe(svgstore())                        //合并svg
     .pipe(gulp.dest('app/images/icons'));
@@ -86,11 +151,12 @@ gulp.task('browserSync', function () {
     server: {
       baseDir: 'app',                                    //目录
       routes: {
-        "/bower_components": "bower_components"
+        "/bower_components": srcPaths.bower
       }
     }
   })
 });
+
 
 //压缩合并
 gulp.task('useref', function () {
@@ -101,7 +167,7 @@ gulp.task('useref', function () {
         newLine: ';',                                    //分号连接符
         transformPath: function (filePath) {             //修改路径
           return filePath
-            .replace('bower_components', '../bower_components')
+            .replace(srcPaths.bower, '../bower_components')
         }
       }
     ))
@@ -113,7 +179,7 @@ gulp.task('useref', function () {
 //压缩图片
 gulp.task('images', function () {
   return gulp
-    .src(['app/images/**/*.+(png|jpg|gif|svg)', '!app/images/icons/**/*'])
+    .src(srcPaths.img)
     .pipe(imagemin())                    //压缩图片
     .pipe(gulp.dest('dist/images'))
 });
@@ -147,10 +213,11 @@ gulp.task('clean:dist', function (callback) {
  */
 
 //监听
-gulp.task('watch', ['browserSync', 'sass', 'ts', 'pug'], function () {
-  gulp.watch('app/sass/**/*.scss', ['sass']);                //监听scss文件变化
-  gulp.watch('app/ts/**/*.ts', ['ts']);                      //监听TS文件变化
-  gulp.watch('app/pug/**/*.pug', ['pug']);              	   //监听pug文件变化
+gulp.task('watch', ['browserSync', 'sass', 'ts', 'pug', 'jsTemplates'], function () {
+  gulp.watch(srcPaths.sass, ['sass']);                //监听scss文件变化
+  gulp.watch(srcPaths.ts, ['ts']);                      //监听TS文件变化
+  gulp.watch(srcPaths.pug, ['pug']);              	   //监听pug文件变化
+  gulp.watch(srcPaths.pugTemp, ['jsTemplates']);       //监听pug模板文件变化
 });
 
 
@@ -163,14 +230,14 @@ gulp.task('watch', ['browserSync', 'sass', 'ts', 'pug'], function () {
 
 
 gulp.task('default', function (callback) {
-  runSequence(['sass', 'ts', 'pug', 'browserSync', 'watch'],
+  runSequence(['sass', 'ts', 'pug', 'jsTemplates', 'browserSync', 'watch'],
     callback
   )
 });
 
 
 gulp.task('build', function (callback) {
-  runSequence('clean:dist', 'sass', 'ts', 'pug',
+  runSequence('clean:dist', 'sass', 'ts', 'pug', 'jsTemplates',
     ['useref', 'images', 'copyOther'],
     callback
   )

@@ -2,16 +2,35 @@
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <meta name="description">
-    <meta name="keywords">
+    <title>gulp-temp</title>
+    <meta name="description" content="gulp temp">
+    <meta name="keywords" content="[&quot;gulp&quot;]">
     <!-- build:css style/styles.min.css-->
     <link rel="stylesheet" href="style/main.css">
     <!-- endbuild-->
   </head>
   <body>
     <header>
-      <h1></h1>
+      <h1>gulp-temp</h1>
+      <div id="tpl"></div>
+      <div id="tpl1"></div>
+      <!--build:js scripts/templates.min.js-->
+      <!--script(src='lib/runtime.js')-->
+      <script src="lib/pug_templates.js"></script>
+      <script src="scripts/templates/tpl.js"></script>
+      <script src="scripts/templates/tpl1.js"></script>
+      <!--endbuild-->
+      <script>
+        var tpl = document.querySelector('#tpl');
+        var tplHtml = window.templates.tpl({author: 'cycjimmy'});
+        console.log(tplHtml);
+        tpl.innerHTML = tplHtml;
+        
+        var tpl1 = document.querySelector('#tpl1');
+        var tpl1Html = window.templates.tpl1({time: '2016'});
+        console.log(tpl1Html);
+        tpl1.innerHTML = tpl1Html;
+      </script>
     </header>
     <main>
       <h2>welcome!</h2>

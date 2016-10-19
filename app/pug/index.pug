@@ -1,11 +1,11 @@
 //-引入模板
 extends layout/_layout.pug
 block title
-  title= title
+  title= statics.title
 
 //-追加meta
 block append meta
-  meta(name='keywords', content=keywords)
+  meta(name='keywords', content=statics.keywords)
 
 
 block body

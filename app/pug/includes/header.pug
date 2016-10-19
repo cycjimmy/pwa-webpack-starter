@@ -1,3 +1,27 @@
 //-顶部区域
 
-h1 #{title}
+h1
+  | #{statics.title}
+#tpl
+#tpl1
+
+//build:js scripts/templates.min.js
+//script(src='lib/runtime.js')
+script(src='lib/pug_templates.js')
+script(src='scripts/templates/tpl.js')
+script(src='scripts/templates/tpl1.js')
+//endbuild
+
+script.
+  var tpl = document.querySelector('#tpl');
+  var tplHtml = window.templates.tpl({author: 'cycjimmy'});
+  console.log(tplHtml);
+  tpl.innerHTML = tplHtml;
+
+  var tpl1 = document.querySelector('#tpl1');
+  var tpl1Html = window.templates.tpl1({time: '2016'});
+  console.log(tpl1Html);
+  tpl1.innerHTML = tpl1Html;
+
+
+
