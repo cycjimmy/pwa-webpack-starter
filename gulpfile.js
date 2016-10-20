@@ -12,10 +12,7 @@ const
 global.srcPaths = {
   ts: 'app/ts/**/*.ts',                             //ts文件
   sass: 'app/sass/**/*.scss',                       //sass文件
-  pug: [                                            //静态pug模板
-    'app/pug/**/*.pug',
-    '!app/pug/templates/*.pug'
-  ],
+  pug: 'app/pug/*.pug',                             //静态pug模板
   pugTemp: 'app/pug/templates/*.pug',               //pug2js模板
   scripts: 'app/scripts/',                          //js文件路径
   style: 'app/style/',                              //css文件路径
