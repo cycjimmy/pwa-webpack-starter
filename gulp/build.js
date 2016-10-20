@@ -50,7 +50,8 @@ gulp.task('images', function () {
 gulp.task('copyOther', function () {
   return gulp
     .src([
-      'app/images/icons/**/*'              //复制图标
+      'app/images/icons/**/*',              //复制图标
+      srcPaths.data                         //data文件
     ], {
       base: 'app'
     })

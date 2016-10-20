@@ -12,6 +12,6 @@ const imputTemplates = (function (templateName: string, selector: string, data: 
   tpl.innerHTML = tplHtml;
 });
 
-imputTemplates('tpl', '#tpl', {author: 'cycjimmy'});
-imputTemplates('tpl1', '#tpl1', {time: '2016'});
+
+
 

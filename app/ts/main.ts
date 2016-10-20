@@ -32,6 +32,6 @@ window.onload = () => {
   //下面代码遍历所有元素加上随机外框色，方面页面元素查看
   [].forEach.call(document.querySelectorAll("*"), function (a: any) {
     a.style.outline = "1px solid #" + (~~(Math.random() * (1 << 24))).toString(16)
-  })
+  });
 
 };

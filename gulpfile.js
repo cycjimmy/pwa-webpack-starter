@@ -24,13 +24,14 @@ global.srcPaths = {
     'app/images/**/*.+(png|jpg|gif|svg)',
     '!app/images/icons/**/*'
   ],
-  data: 'app/data/',                                //输入data源
+  data: 'app/data/**/*',                            //输入data源
+  dataTemp: 'app/pug/data/statics.json',            //模板用data
   bower: "bower_components"                         //bower包入口
 };
 
 
 // Require all tasks in the 'gulp' folder.
-requireDir('./gulp', { recurse: false });
+requireDir('./gulp', {recurse: false});
 
 //默认任务
 gulp.task('default', function (callback) {

@@ -17,3 +17,12 @@ gulp.task('browserSync', function () {
     }
   })
 });
+
+
+gulp.task('browserSync:dist', function () {
+  browserSync({
+    server: {
+      baseDir: 'dist'
+    }
+  })
+});

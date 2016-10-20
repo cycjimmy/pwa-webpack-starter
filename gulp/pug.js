@@ -20,7 +20,7 @@ gulp.task('pug', function () {
     .src(srcPaths.pug)
     .pipe(data(function (file) {
       return {
-        'statics': JSON.parse(fs.readFileSync('app/data/statics.json')),
+        'statics': JSON.parse(fs.readFileSync(srcPaths.dataTemp))
       }
     }))
     .pipe(plumber())
