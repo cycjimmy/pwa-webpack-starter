@@ -1,0 +1,19 @@
+//-中间区块
+
+h2 welcome!
+
+
+
+mixin iconList(name, id)
+  li
+    svg.icon(aria-hidden='true')
+      use(xlink:href='./images/icons/icons.svg#' + id)
+    span #{name}
+
+ul.foo
+  each svgItem in statics.svgItems
+    + iconList(svgItem.name, svgItem.svgId)
+
+#show_load
+.Tour
+

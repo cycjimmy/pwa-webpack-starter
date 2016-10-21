@@ -3,65 +3,68 @@
 @import 'utilities';
 
 body {
-	background-color: $color-teal-base;
+  background-color: $color-teal-base;
 }
 
 header {
-	border-bottom: 2px solid white;
-	color: white;
+  border-bottom: 2px solid white;
+  color: white;
 
-	h1 {
-		text-align: center;
-		padding: 10px;
-	}
+  h1 {
+    text-align: center;
+    padding: 10px;
+  }
 }
 
 main {
-	position: relative;
-	height: 60vh;
-	border-bottom: 2px solid white;
+  position: relative;
+  height: 60vh;
+  border-bottom: 2px solid white;
 
-	color: white;
+  color: white;
 
-	h2 {
-		padding: 5px;
-		text-align: center;
-	}
+  h2 {
+    padding: 5px;
+    text-align: center;
+  }
 }
 
 .foo {
-	@include fix-center(0);
-	width: 50%;
-	height: 50%;
-	display: flex;
-	flex-direction: column;
-	border: 1px solid white;
+  @include fix-center(0);
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
 
-	li {
-		flex: 1;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+  li {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .icon {
-	width: 20px;
-	height: 20px;
-	margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
 
-	/* 图标和文字相邻时，垂直对齐 */
-	vertical-align: -4px;
-	/* 通过设置 color 来改变 SVG 的颜色/fill */
-	fill: white;
-	/* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
-	   normalize.css 中也包含这行 */
-	overflow: hidden;
+  /* 图标和文字相邻时，垂直对齐 */
+  vertical-align: -4px;
+  /* 通过设置 color 来改变 SVG 的颜色/fill */
+  fill: white;
+  /* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
+     normalize.css 中也包含这行 */
+  overflow: hidden;
 }
 
 #show_load {
-	padding: 5px;
-	color: white;
-	text-align: center;
+  padding: 5px;
+  color: white;
+  text-align: center;
 }
 
+p{
+  text-align: center;
+}

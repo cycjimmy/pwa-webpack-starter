@@ -50,8 +50,10 @@ Temporary Items
 # extra
 node_modules
 .idea
-dist
-.publish
 npm-debug.log
 
-
+/bower_components/
+/app/scripts/
+/app/style/
+/.publish/
+/dist/

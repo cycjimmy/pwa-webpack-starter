@@ -7,6 +7,7 @@ gulp自动化 webpage
 $ git clone https://github.com/cycjimmy/gulp-temp.git MyApp
 $ cd MyApp
 $ npm install
+$ bower install
 $ npm start
 ```
 
