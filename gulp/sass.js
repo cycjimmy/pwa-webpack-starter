@@ -18,7 +18,7 @@ gulp.task('sass', function () {
       browsers: ['last 4 versions'],   //自动加前缀
       cascade: false
     }))
-    .pipe(gulp.dest('app/style'))      //输出css
+    .pipe(gulp.dest('dist/style'))      //输出css
     .pipe(browserSync.reload({         //刷新web服务器
       stream: true
     }))

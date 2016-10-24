@@ -13,7 +13,7 @@ const
 
 //build
 gulp.task('build', function (callback) {
-  runSequence('clean:dist', 'sass', 'ts', 'pug', 'jsTemplates',
+  runSequence('clean:build', 'sass', 'pug', 'pack:build',
     ['useref', 'images', 'copyOther'],
     callback
   )
@@ -23,19 +23,15 @@ gulp.task('build', function (callback) {
 //压缩合并
 gulp.task('useref', function () {
   return gulp
-    .src('app/*.html')
+    .src('dist/*.html')
     .pipe(useref(                                       //合并
       {
-        newLine: ';',                                    //分号连接符
-        transformPath: function (filePath) {             //修改路径
-          return filePath
-            .replace(srcPaths.bower, '../bower_components')
-        }
+        newLine: ';'                                    //分号连接符
       }
     ))
     .pipe(gulpIf('*.js', uglify()))                     //压缩JS
     .pipe(gulpIf('*.css', cssnano()))                   //压缩CSS
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('build'));
 });
 
 //压缩图片
@@ -43,7 +39,7 @@ gulp.task('images', function () {
   return gulp
     .src(srcPaths.img)
     .pipe(imagemin())                    //压缩图片
-    .pipe(gulp.dest('dist/images'))
+    .pipe(gulp.dest('build/images'))
 });
 
 //复制其他
@@ -55,5 +51,5 @@ gulp.task('copyOther', function () {
     ], {
       base: 'app'
     })
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('build'))
 });

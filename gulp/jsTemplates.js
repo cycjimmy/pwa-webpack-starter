@@ -16,7 +16,7 @@ gulp.task('jsTemplates', function () {
     .pipe(pug({
       client: true,
       externalRuntime: true,
-      //pretty: true,
+      pretty: true,
       compileDebug: false
     }))
     .pipe(job({

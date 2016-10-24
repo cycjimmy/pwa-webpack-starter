@@ -53,7 +53,7 @@ node_modules
 npm-debug.log
 
 /bower_components/
-/app/scripts/
 /app/style/
 /.publish/
 /dist/
+/build/

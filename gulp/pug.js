@@ -17,7 +17,7 @@ const
 //pug输出html
 gulp.task('pug', function () {
   return gulp
-    .src(srcPaths.pug)
+    .src('app/pug/*.pug')
     .pipe(data(function (file) {
       return {
         'statics': JSON.parse(fs.readFileSync(srcPaths.dataTemp))
@@ -27,7 +27,7 @@ gulp.task('pug', function () {
     .pipe(pug({
       pretty: true
     }))
-    .pipe(gulp.dest('app'))            //输出html
+    .pipe(gulp.dest('dist'))            //输出html
     .pipe(browserSync.reload({         //刷新web服务器
       stream: true
     }))

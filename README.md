@@ -7,7 +7,6 @@ gulp自动化 webpage
 $ git clone https://github.com/cycjimmy/gulp-temp.git MyApp
 $ cd MyApp
 $ npm install
-$ bower install
 $ npm start
 ```
 
@@ -33,13 +32,6 @@ $ npm start
     编译sass,自动加前缀,输出css
     ```shell
     $ gulp sass
-    ```
-
-* **ts**
-
-    编译ts文件,输出js
-    ```shell
-    $ gulp ts
     ```
 
 * **svgstore**

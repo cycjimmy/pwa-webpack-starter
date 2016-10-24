@@ -2,16 +2,17 @@
  * Created by cyc on 2016/10/20.
  */
 
-declare var $: any;
+
+import $ from 'jquery';
 
 //缓存服务器数据变量
-let SERVER_DATA: any = {
+let SERVER_DATA = {
   "author": {},
   "time": {}
 };
 
 //缓存常量
-let STATICS_DATA: any = {
+let STATICS_DATA = {
   "relativeDir": ''
 };
 

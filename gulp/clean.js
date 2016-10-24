@@ -15,7 +15,7 @@ gulp.task('clean', function (callback) {
 });
 
 //清空目录，不包含图片
-gulp.task('clean:dist', function (callback) {
-  del(['dist/**/*', '!dist/images', '!dist/images/**/*']);
+gulp.task('clean:build', function (callback) {
+  del(['build/**/*', '!build/images', '!build/images/**/*']);
   return cache.clearAll(callback);
 });
