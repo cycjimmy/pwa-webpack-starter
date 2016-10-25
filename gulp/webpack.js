@@ -1,9 +1,9 @@
 const
   gulp = require('gulp'),
   webpack = require('gulp-webpack'),
+  browserSync = require('browser-sync'),
   webpackConf = require('../webpack/webpack.config'),
-  webpackBuildConf = require('../webpack/webpack.build.config'),
-  browserSync = require('browser-sync');
+  webpackBuildConf = require('../webpack/webpack.build.config');
 
 
 //引用webpack对js进行操作

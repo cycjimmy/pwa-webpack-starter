@@ -10,13 +10,8 @@ const
 
 //入口路径
 global.srcPaths = {
-  //ts: 'app/ts/**/*.ts',                             //ts文件
   sass: 'app/sass/**/*.scss',                       //sass文件
-  pug: [                                            //静态pug模板
-    'app/pug/**/*',
-    '!app/pug/templates/*.pug'
-  ],
-  pugTemp: 'app/pug/templates/*.pug',               //pug2js模板
+  pug: 'app/pug/**/*',                              //静态pug模板
   scripts: 'app/scripts/**/*.js',                   //js文件路径
   style: 'app/style/',                              //css文件路径
   icons: 'app/icons/*',                             //输入图标源
@@ -35,17 +30,18 @@ requireDir('./gulp', {recurse: false});
 
 //默认任务
 gulp.task('default', function (callback) {
-  runSequence(['sass', 'pug', 'jsTemplates', 'pack', 'browserSync', 'watch'],
+  runSequence(['sass', 'pack', 'browserSync', 'watch'],
     callback
   )
 });
 
-
 //监听
 gulp.task('watch', function () {
   gulp.watch(srcPaths.sass, ['sass']);                               //监听scss文件变化
-  gulp.watch(srcPaths.scripts, ['pack']);                        //监听JS文件变化
-  gulp.watch(srcPaths.pug, ['pug']);              	                 //监听pug文件变化
-  gulp.watch(srcPaths.pugTemp, ['jsTemplates']);                     //监听pug模板文件变化
+  gulp.watch(srcPaths.scripts, ['pack']);                            //监听JS文件变化
+  gulp.watch(srcPaths.pug, ['pack']);              	                 //监听pug文件变化
 });
+
+
+
 

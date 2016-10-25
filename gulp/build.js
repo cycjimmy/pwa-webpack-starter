@@ -5,33 +5,24 @@
 const
   gulp = require('gulp'),
   runSequence = require('run-sequence'),
-  useref = require('gulp-useref'),
-  uglify = require('gulp-uglify'),
-  gulpIf = require('gulp-if'),
   cssnano = require('gulp-cssnano'),
   imagemin = require('gulp-imagemin');
 
 //build
 gulp.task('build', function (callback) {
-  runSequence('clean:build', 'sass', 'pug', 'pack:build',
-    ['useref', 'images', 'copyOther'],
+  runSequence('clean:build', 'sass', 'pack:build',
+    ['cssnano', 'images', 'copyOther'],
     callback
   )
 });
 
 
 //压缩合并
-gulp.task('useref', function () {
+gulp.task('cssnano', function () {
   return gulp
-    .src('dist/*.html')
-    .pipe(useref(                                       //合并
-      {
-        newLine: ';'                                    //分号连接符
-      }
-    ))
-    .pipe(gulpIf('*.js', uglify()))                     //压缩JS
-    .pipe(gulpIf('*.css', cssnano()))                   //压缩CSS
-    .pipe(gulp.dest('build'));
+    .src('dist/style/*.css')
+    .pipe(cssnano())                   //压缩CSS
+    .pipe(gulp.dest('build/style'));
 });
 
 //压缩图片

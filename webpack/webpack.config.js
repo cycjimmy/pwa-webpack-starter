@@ -1,7 +1,7 @@
 ﻿const
   path = require('path'),
   webpack = require('webpack');
-//HtmlWebpackPlugin = require('html-webpack-plugin');
+  HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -9,13 +9,14 @@ module.exports = {
   entry: path.resolve('./app', 'scripts', 'main.js'),
   output: {
     path: path.resolve('./dist', 'scripts'),
-    filename: "bundle.js"
+    filename: "bundle-[hash].js"
   },
   debug: true,
 
   resolve: {
     'root': [path.resolve('./app')],
-    'extensions': ['', '.js']
+    'alias':[path.resolve('./app')],
+    'extensions': ['', '.js','.pug']
   },
 
   module: {
@@ -31,9 +32,15 @@ module.exports = {
       },
       {
         test: /\.pug$/,                           //编译pug
-        loader: 'pug-loader'
+        loader: 'pug'
       }
     ]
 
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './app/pug/index.pug', // 模板位置
+      filename: '../index.html'
+    })
+  ]
 };

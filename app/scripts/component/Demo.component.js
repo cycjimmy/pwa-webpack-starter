@@ -1,5 +1,5 @@
 
-export class Demo {
+export default class Demo {
 
   constructor(element) {
     this.element = element;

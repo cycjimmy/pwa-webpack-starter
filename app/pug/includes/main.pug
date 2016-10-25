@@ -2,6 +2,23 @@
 
 h2 welcome!
 
+-
+  var svgItems = [
+  {
+  "name": "pic",
+  "svgId": "pic"
+  },
+  {
+  "name": "edit",
+  "svgId": "edit"
+  },
+  {
+  "name": "video",
+  "svgId": "video"
+  }
+  ]
+
+
 mixin iconList(name, id)
   li
     svg.icon(aria-hidden='true')
@@ -9,7 +26,7 @@ mixin iconList(name, id)
     span #{name}
 
 ul.foo
-  each svgItem in statics.svgItems
+  each svgItem in svgItems
     + iconList(svgItem.name, svgItem.svgId)
 
 #show_load
