@@ -1,22 +1,27 @@
 ﻿const
   path = require('path'),
   webpack = require('webpack');
-  HtmlWebpackPlugin = require('html-webpack-plugin');
+HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
 
-  entry: path.resolve('./app', 'scripts', 'main.js'),
+  entry: {
+    "vendor": ["jquery"],
+    "bundle": path.resolve('./app', 'scripts', 'main.js')
+  },
   output: {
     path: path.resolve('./dist', 'scripts'),
-    filename: "bundle-[hash].js"
+    filename: "[name]-[hash].js"
   },
   debug: true,
 
   resolve: {
-    'root': [path.resolve('./app')],
-    'alias':[path.resolve('./app')],
-    'extensions': ['', '.js','.pug']
+    'root': [
+      path.resolve('./app'),
+      path.resolve('./node_modules'),
+    ],
+    'extensions': ['', '.js', '.pug']
   },
 
   module: {
@@ -38,8 +43,12 @@ module.exports = {
 
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ["vendor"]
+    }),
+
     new HtmlWebpackPlugin({
-      template: './app/pug/index.pug', // 模板位置
+      template: path.resolve('./app', 'pug', 'index.pug'), // 模板位置
       filename: '../index.html'
     })
   ]
