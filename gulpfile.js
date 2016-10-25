@@ -13,7 +13,7 @@ global.srcPaths = {
   //ts: 'app/ts/**/*.ts',                             //ts文件
   sass: 'app/sass/**/*.scss',                       //sass文件
   pug: [                                            //静态pug模板
-    'app/pug/**/*.pug',
+    'app/pug/**/*',
     '!app/pug/templates/*.pug'
   ],
   pugTemp: 'app/pug/templates/*.pug',               //pug2js模板
@@ -35,7 +35,7 @@ requireDir('./gulp', {recurse: false});
 
 //默认任务
 gulp.task('default', function (callback) {
-  runSequence(['sass', 'pug', 'jsTemplates', 'pack:js','browserSync', 'watch'],
+  runSequence(['sass', 'pug', 'jsTemplates', 'pack','browserSync', 'watch'],
     callback
   )
 });

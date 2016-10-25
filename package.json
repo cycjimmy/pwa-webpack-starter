@@ -4,7 +4,6 @@
   "description": "a gulp template",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
     "svg": "gulp svgstore",
     "build": "gulp build",
@@ -52,8 +51,11 @@
     "gulp-uglify": "^2.0.0",
     "gulp-useref": "^3.1.2",
     "gulp-util": "^3.0.7",
+    "html-webpack-plugin": "^2.23.0",
     "json-loader": "^0.5.4",
+    "node-sass": "^3.10.1",
     "pug-cli": "^1.0.0-alpha6",
+    "pug-loader": "^2.3.0",
     "require-dir": "^0.3.1",
     "run-sequence": "^1.2.2",
     "webpack": "^1.13.2"

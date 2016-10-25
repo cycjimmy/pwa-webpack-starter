@@ -1,12 +1,12 @@
-const
+﻿const
   path = require('path'),
   webpack = require('webpack');
-
+  //HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
 
-  entry: __dirname+ '/app/scripts/main.js',
+  entry: __dirname + '/app/scripts/main.js',
   output: {
     path: __dirname + "/dist/scripts",
     filename: "bundle.js"
@@ -28,7 +28,12 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel'
+      },
+      {
+        test: /\.pug$/,                           //编译pug
+        loader: 'pug-loader'
       }
     ]
+
   }
 };
