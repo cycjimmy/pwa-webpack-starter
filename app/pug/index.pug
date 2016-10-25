@@ -1,20 +1,23 @@
-//-引入模板
-extends layout/_layout.pug
+doctype html
+html(lang='zh-cn')
+  head
+    meta(charset='utf-8')
+    title= statics.title
+    meta(name='description', content=statics.description)
+    meta(name='keywords', content=statics.keywords)
+
+    // build:css style/styles.min.css
+    link(rel='stylesheet' href='style/main.css')
+    // endbuild
+
+  body
+    header
+      include includes/header.pug
+
+    main
+      include includes/main.pug
+
+    script(src='scripts/bundle.js')
 
 
-block title
-  title= statics.title
 
-//-追加meta
-block append meta
-  meta(name='keywords', content=statics.keywords)
-
-
-block body
-  header
-    include includes/header.pug
-
-  main
-    include includes/main.pug
-
-  script(src='scripts/bundle.js')

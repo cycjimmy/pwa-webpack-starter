@@ -3,9 +3,9 @@ const
   webpack = require('webpack');
 
 module.exports = {
-  entry: __dirname+ '/app/scripts/main.js',
+  entry: path.resolve('./app', 'scripts', 'main.js'),
   output: {
-    path: __dirname + "/build/scripts",
+    path: path.resolve('./build', 'scripts'),
     filename: "bundle.js"
   },
 

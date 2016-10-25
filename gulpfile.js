@@ -35,15 +35,16 @@ requireDir('./gulp', {recurse: false});
 
 //默认任务
 gulp.task('default', function (callback) {
-  runSequence(['sass', 'pug', 'jsTemplates', 'pack','browserSync', 'watch'],
+  runSequence(['sass', 'pug', 'jsTemplates', 'pack', 'browserSync', 'watch'],
     callback
   )
 });
 
+
 //监听
-gulp.task('watch', ['browserSync', 'sass', 'jsTemplates', 'pug', 'pack'], function () {
+gulp.task('watch', function () {
   gulp.watch(srcPaths.sass, ['sass']);                               //监听scss文件变化
-  gulp.watch(srcPaths.scripts, ['pack','browserSync:reload']);       //监听JS文件变化
+  gulp.watch(srcPaths.scripts, ['pack']);                        //监听JS文件变化
   gulp.watch(srcPaths.pug, ['pug']);              	                 //监听pug文件变化
   gulp.watch(srcPaths.pugTemp, ['jsTemplates']);                     //监听pug模板文件变化
 });

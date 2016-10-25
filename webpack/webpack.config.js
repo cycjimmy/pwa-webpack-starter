@@ -1,14 +1,14 @@
 ﻿const
   path = require('path'),
   webpack = require('webpack');
-  //HtmlWebpackPlugin = require('html-webpack-plugin');
+//HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
 
-  entry: __dirname + '/app/scripts/main.js',
+  entry: path.resolve('./app', 'scripts', 'main.js'),
   output: {
-    path: __dirname + "/dist/scripts",
+    path: path.resolve('./dist', 'scripts'),
     filename: "bundle.js"
   },
   debug: true,
