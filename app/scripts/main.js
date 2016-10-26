@@ -8,8 +8,8 @@ import Templates from './share/Templates';
 import GetUrlRelativeDir from './func/getUrlRelativeDir.func';
 import getData from './func/getData.func';
 
-import tpl from './templates/tpl.pug';
-import tpl1 from './templates/tpl1.pug';
+import tpl from './templates/tpl';
+import tpl1 from './templates/tpl1';
 
 
 //设置相对路径根目录

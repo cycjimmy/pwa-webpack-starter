@@ -13,6 +13,7 @@ global.srcPaths = {
   sass: 'app/sass/**/*.scss',                       //sass文件
   pug: 'app/pug/**/*',                              //静态pug模板
   scripts: 'app/scripts/**/*.js',                   //js文件路径
+  pugTemplate: 'app/scripts/templates/**/*.pug',     //pug模板文件
   style: 'app/style/',                              //css文件路径
   icons: 'app/icons/*',                             //输入图标源
   img: [                                            //输入图片源
@@ -38,8 +39,12 @@ gulp.task('default', function (callback) {
 //监听
 gulp.task('watch', function () {
   gulp.watch(srcPaths.sass, ['sass']);                               //监听scss文件变化
-  gulp.watch(srcPaths.scripts, ['pack']);                            //监听JS文件变化
-  gulp.watch(srcPaths.pug, ['pack']);              	                 //监听pug文件变化
+  gulp.watch([
+      srcPaths.scripts,
+      srcPaths.pug,
+      srcPaths.pugTemplate
+    ],
+    ['pack']);             //监听JS,pug文件变化
 });
 
 

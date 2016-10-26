@@ -14,7 +14,7 @@ gulp.task('browserSync', function () {
       routes: {
         "/node_modules": srcPaths.node_modules,
         "/images": "app/images",
-        "/data": "app/data",
+        "/data": "app/data"
       }
     }
   })
@@ -28,12 +28,4 @@ gulp.task('browserSync:build', function () {
     }
   })
 });
-
-
-// //刷新web服务器
-// gulp.task('browserSync:reload', function () {
-//   browserSync.reload({
-//     stream: true
-//   })
-// });
 

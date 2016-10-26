@@ -20,7 +20,7 @@ module.exports = {
       path.resolve('./node_modules'),
     ],
     'alias': {
-      'src': path.resolve('./app', 'scripts')
+      'jquery': path.resolve('./node_modules', 'jquery','dist','jquery.min.js')
     },
     'extensions': ['', '.js', '.pug']
   },
