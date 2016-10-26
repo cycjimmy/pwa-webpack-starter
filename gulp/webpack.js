@@ -1,6 +1,6 @@
 const
   gulp = require('gulp'),
-  webpack = require('gulp-webpack'),
+  webpack = require('webpack-stream'),
   browserSync = require('browser-sync'),
   webpackConf = require('../webpack/webpack.config'),
   webpackBuildConf = require('../webpack/webpack.build.config');

@@ -1,18 +1,28 @@
 const
   path = require('path'),
-  webpack = require('webpack');
+  webpack = require('webpack'),
+  HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve('./app', 'scripts', 'main.js'),
+  entry: {
+    "vendor": ["jquery"],
+    "bundle": path.resolve('./app', 'scripts', 'main.js')
+  },
+
   output: {
     path: path.resolve('./build', 'scripts'),
-    filename: "bundle-[hash].js"
+    filename: "[name]-[hash].js"
   },
 
   resolve: {
-    'root': [path.resolve('./app')],
-    'alias':[path.resolve('./app')],
-    'extensions': ['', '.js']
+    'root': [
+      path.resolve('./app'),
+      path.resolve('./node_modules'),
+    ],
+    'alias': {
+      'src': path.resolve('./app', 'scripts')
+    },
+    'extensions': ['', '.js', '.pug']
   },
 
   module: {
@@ -34,8 +44,12 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ["vendor"]
+    }),
+
     new HtmlWebpackPlugin({
-      template: './app/pug/index.pug',                  // 模板位置
+      template: path.resolve('./app', 'pug', 'index.pug'), // 模板位置
       filename: '../index.html'
     }),
 

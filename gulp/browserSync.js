@@ -30,10 +30,10 @@ gulp.task('browserSync:build', function () {
 });
 
 
-//刷新web服务器
-gulp.task('browserSync:reload', function () {
-  browserSync.reload({
-    stream: true
-  })
-});
+// //刷新web服务器
+// gulp.task('browserSync:reload', function () {
+//   browserSync.reload({
+//     stream: true
+//   })
+// });
 

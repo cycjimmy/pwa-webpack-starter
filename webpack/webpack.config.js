@@ -1,7 +1,7 @@
 ﻿const
   path = require('path'),
-  webpack = require('webpack');
-HtmlWebpackPlugin = require('html-webpack-plugin');
+  webpack = require('webpack'),
+  HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -10,10 +10,12 @@ module.exports = {
     "vendor": ["jquery"],
     "bundle": path.resolve('./app', 'scripts', 'main.js')
   },
+
   output: {
     path: path.resolve('./dist', 'scripts'),
     filename: "[name]-[hash].js"
   },
+
   debug: true,
 
   resolve: {
@@ -21,6 +23,9 @@ module.exports = {
       path.resolve('./app'),
       path.resolve('./node_modules'),
     ],
+    'alias': {
+      'src': path.resolve('./app', 'scripts')
+    },
     'extensions': ['', '.js', '.pug']
   },
 
