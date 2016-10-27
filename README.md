@@ -15,18 +15,23 @@ $ npm start
 
 ## 插件列表
 * browser-sync
+* gulp-webpack
+* gulp-sass
 * gulp-autoprefixer
 * gulp-cssnano
 * gulp-gh-pages
 * gulp-imagemin
-* gulp-sass
 * gulp-svgstore
-* gulp-typescript
-* gulp-uglify
-* gulp-useref
 
 ## 任务说明
 ### 主要任务
+* **pack**
+
+    打包js模块
+    ```shell
+    $ gulp pack
+    ```
+    
 * **sass**
 
     编译sass,自动加前缀,输出css
@@ -65,14 +70,14 @@ $ npm start
 
 * **watch**
 
-    监听scss文件变化，监听ts文件变化，监听html文件变化，并刷新浏览器
+    监听文件变化，并刷新浏览器
     ```shell
     $ gulp watch
     ```
 
 * **build**
 
-    将文件打包压缩到dist目录
+    将文件打包压缩到build目录
     ```shell
     $ gulp build
     ```    
