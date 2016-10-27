@@ -1,32 +1,19 @@
-//-引入模板
-extends layout/_layout.pug
+doctype html
+html(lang='zh-cn')
+  head
+    meta(charset='utf-8')
+    title gulp-temp
+    meta(name='description', content="gulp temp")
+    meta(name='keywords', content="gulp")
+
+    link(rel='stylesheet' href='style/main.css')
+
+  body
+    header
+      include includes/header.pug
+
+    main
+      include includes/main.pug
 
 
-block title
-  title= statics.title
 
-//-追加meta
-block append meta
-  meta(name='keywords', content=statics.keywords)
-
-
-block body
-  header
-    include includes/header.pug
-
-  main
-    include includes/main.pug
-
-
-  //build:js scripts/vendor.js
-  script(src='bower_components/jquery/dist/jquery.min.js')
-
-  script(src='scripts/data_handle.js')
-
-  script(src='lib/pug_templates.js')
-  script(src='scripts/templates/tpl.js')
-  script(src='scripts/templates/tpl1.js')
-  script(src='scripts/templates_cmd.js')
-
-  script(src='scripts/main.js')
-  //endbuild

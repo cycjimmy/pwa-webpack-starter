@@ -10,19 +10,22 @@ const
 gulp.task('browserSync', function () {
   browserSync({
     server: {
-      baseDir: 'app',                                    //目录
+      baseDir: 'dist',                                   //目录
       routes: {
-        "/bower_components": srcPaths.bower
+        "/node_modules": srcPaths.node_modules,
+        "/images": "app/images",
+        "/data": "app/data"
       }
     }
   })
 });
 
 
-gulp.task('browserSync:dist', function () {
+gulp.task('browserSync:build', function () {
   browserSync({
     server: {
-      baseDir: 'dist'
+      baseDir: 'build'
     }
   })
 });
+
