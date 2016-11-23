@@ -7,13 +7,16 @@ module.exports = {
   devtool: 'eval-source-map',
 
   entry: {
-    "vendor": ["jquery"],
+    "vendor": [
+      "iscroll",
+      "fastclick",
+    ],
     "bundle": path.resolve('./app', 'scripts', 'main.js')
   },
 
   output: {
     path: path.resolve('./dist', 'scripts'),
-    filename: "[name]-[hash].js"
+    filename: "[name]-[hash:6].js"
   },
 
   debug: true,
@@ -24,7 +27,8 @@ module.exports = {
       path.resolve('./node_modules'),
     ],
     'alias': {
-      'jquery': path.resolve('./node_modules', 'jquery','dist','jquery.min.js')
+      'iscroll': path.resolve('./node_modules', 'iscroll', 'build', 'iscroll-lite.js'),
+      'fastclick': path.resolve('./node_modules', 'fastclick', 'lib', 'fastclick.js'),
     },
     'extensions': ['', '.js', '.pug']
   },
@@ -41,19 +45,20 @@ module.exports = {
         loader: 'babel'
       },
       {
-        test: /\.pug$/,                           //编译pug
+        test: /\.pug$/,
         loader: 'pug'
-      }
+      },
     ]
-
   },
+
   plugins: [
+
     new webpack.optimize.CommonsChunkPlugin({
       names: ["vendor"]
     }),
 
     new HtmlWebpackPlugin({
-      template: path.resolve('./app', 'pug', 'index.pug'), // 模板位置
+      template: path.resolve('./app', 'view', 'index.pug'), // 模板位置
       filename: '../index.html'
     })
   ]

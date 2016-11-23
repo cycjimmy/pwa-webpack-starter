@@ -5,7 +5,6 @@ gulp自动化 webpage
 ## 使用
 ```shell
 $ git clone https://github.com/cycjimmy/gulp-temp.git MyApp
-$ cd MyApp
 $ npm install
 $ npm start
 ```

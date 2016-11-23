@@ -14,9 +14,12 @@ gulp.task('browserSync', function () {
       routes: {
         "/node_modules": srcPaths.node_modules,
         "/images": "app/images",
-        "/data": "app/data"
-      }
-    }
+        "/data": "app/data",
+      },
+      //https: true,
+    },
+    ghostMode: false,
+    logLevel: "debug",
   })
 });
 
@@ -24,8 +27,15 @@ gulp.task('browserSync', function () {
 gulp.task('browserSync:build', function () {
   browserSync({
     server: {
-      baseDir: 'build'
-    }
+      baseDir: 'build',
+      //https: true,
+    },
+    port: 4000,
+    ui: {
+      port: 4001
+    },
+    ghostMode: false,
+    logLevel: "debug",
   })
 });
 

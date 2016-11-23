@@ -5,13 +5,16 @@ const
 
 module.exports = {
   entry: {
-    "vendor": ["jquery"],
+    "vendor": [
+      "fastclick",
+      "iscroll",
+    ],
     "bundle": path.resolve('./app', 'scripts', 'main.js')
   },
 
   output: {
     path: path.resolve('./build', 'scripts'),
-    filename: "[name]-[hash].js"
+    filename: "[name]-[hash:6].js"
   },
 
   resolve: {
@@ -20,7 +23,8 @@ module.exports = {
       path.resolve('./node_modules'),
     ],
     'alias': {
-      'jquery': path.resolve('./node_modules', 'jquery','dist','jquery.min.js')
+      'iscroll': path.resolve('./node_modules', 'iscroll', 'build', 'iscroll-lite.js'),
+      'fastclick': path.resolve('./node_modules', 'fastclick', 'lib', 'fastclick.js'),
     },
     'extensions': ['', '.js', '.pug']
   },
@@ -37,9 +41,9 @@ module.exports = {
         loader: 'babel'
       },
       {
-        test: /\.pug$/,                           //编译pug
-        loader: 'pug-loader'
-      }
+        test: /\.pug$/,
+        loader: 'pug'
+      },
     ]
   },
 
@@ -49,7 +53,7 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      template: path.resolve('./app', 'pug', 'index.pug'), // 模板位置
+      template: path.resolve('./app', 'view', 'index.pug'), // 模板位置
       filename: '../index.html'
     }),
 

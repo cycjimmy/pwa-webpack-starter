@@ -57,3 +57,5 @@ npm-debug.log
 /.publish/
 /dist/
 /build/
+/yarn.lock
+/yarn-error.log
