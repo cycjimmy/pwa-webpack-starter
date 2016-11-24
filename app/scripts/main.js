@@ -26,21 +26,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   xhrData('getData', {
-    type: 'GET',
-    url: 'http://localhost:4444/getData',
+    //type: 'GET',
+    data: "a getData require",
+    dataType:'json',
   })
     .then((data) => {
       console.log("收到数据" + data);
       //赋值
-
-      let json = JSON.parse(data);
-      sessionStorage.setItem('author', JSON.stringify(json.author) || '');
-      sessionStorage.setItem('time', JSON.stringify(json.time) || '');
+      sessionStorage.setItem('author', JSON.stringify(data.author) || '');
+      sessionStorage.setItem('time', JSON.stringify(data.time) || '');
 
       let
-        author = json.author,
-        time = json.time;
-
+        author = data.author,
+        time = data.time;
 
       new Templates(tpl, '#tpl', {author}).load();
       new Templates(tpl1, '#tpl1', {time}).load();

@@ -4,7 +4,8 @@
 
 const
   gulp = require('gulp'),
-  browserSync = require('browser-sync');
+  browserSync = require('browser-sync'),
+  getDataAjax = require('../mock/getData.ajax');
 
 //browserSync 自动刷新web服务器
 gulp.task('browserSync', function () {
@@ -20,6 +21,12 @@ gulp.task('browserSync', function () {
     },
     ghostMode: false,
     logLevel: "debug",
+    middleware: [
+      {
+        route: "/getData",
+        handle: getDataAjax(),
+      },
+    ],
   })
 });
 
@@ -36,6 +43,12 @@ gulp.task('browserSync:build', function () {
     },
     ghostMode: false,
     logLevel: "debug",
+    middleware: [
+      {
+        route: "/getData",
+        handle: getDataAjax(),
+      },
+    ],
   })
 });
 
