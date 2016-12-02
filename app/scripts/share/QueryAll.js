@@ -15,12 +15,12 @@ import {isString} from './awesome.func';
 
 export default class QueryAll {
 
-  constructor(selectorOrEls, content = document) {
+  constructor(selectorOrEls, context = document) {
 
     let elements = null;
 
     if (isString(selectorOrEls)) {
-      elements = content.querySelectorAll(selectorOrEls);
+      elements = context.querySelectorAll(selectorOrEls);
     } else {
       elements = new Array(selectorOrEls);
     }

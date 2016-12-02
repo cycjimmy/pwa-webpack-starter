@@ -5,11 +5,12 @@
 
 import QueryAll from './QueryAll';
 
-//参数：选择器或元素 移动时是否要显示touchActive
+// 参数：
+// 选择器或元素，上下文，移动时是否要显示touchActive
 
-export default function (selectorOrEls, isMoveShowActive = false) {
+export default function (selectorOrEls, context = document, isMoveShowActive = false) {
 
-  let element = new QueryAll(selectorOrEls);
+  let element = new QueryAll(selectorOrEls, context);
 
   element.on('touchstart', addTouchActive);
 

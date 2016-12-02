@@ -58,6 +58,12 @@ module.exports = {
     }),
 
     new webpack.optimize.OccurenceOrderPlugin(),        // 为组件分配ID
-    new webpack.optimize.UglifyJsPlugin()               // 压缩JS代码
+    new webpack.optimize.UglifyJsPlugin({               // 压缩JS代码
+      compress: {
+        warnings: false,
+        drop_debugger: true,
+        drop_console: true
+      }
+    }),
   ],
 };
