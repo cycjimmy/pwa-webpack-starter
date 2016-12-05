@@ -19,3 +19,10 @@ gulp.task('clean:build', function (callback) {
   del('build');
   return cache.clearAll(callback);
 });
+
+
+//清空icon
+gulp.task('clean:icon', function (callback) {
+  del('app/images/icons');
+  return cache.clearAll(callback);
+});

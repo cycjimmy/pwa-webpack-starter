@@ -14,7 +14,7 @@ global.srcPaths = {
   view: 'app/view/**/*',                            //静态pug模板
   scripts: 'app/scripts/**/*',                      //js文件路径
   style: 'app/style/',                              //css文件路径
-  icons: 'app/icons/*',                             //输入图标源
+  icons: 'app/icons/',                              //输入图标源
   img: [                                            //输入图片源
     'app/images/**/*.+(png|jpg|gif|svg)',
     '!app/images/icons/**/*'

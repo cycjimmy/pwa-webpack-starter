@@ -1,6 +1,6 @@
 {
   "name": "gulp-temp",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Gulp template starter: webpack sass pug babel",
   "main": "index.js",
   "scripts": {
@@ -50,6 +50,7 @@
     "gulp-svgstore": "^6.1.0",
     "html-webpack-plugin": "^2.24.1",
     "json-loader": "^0.5.4",
+    "merge-stream": "^1.0.1",
     "node-sass": "^3.13.0",
     "pug": "^2.0.0-beta6",
     "pug-loader": "^2.3.0",
