@@ -25,10 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
   demo.load();
 
 
-  xhrData('getData', {
+  xhrData({
     //type: 'GET',
+    funcName: 'getData',
     data: "a getData require",
-    dataType:'json',
+    dataType: 'json',
   })
     .then((data) => {
       console.log("收到数据" + data);
