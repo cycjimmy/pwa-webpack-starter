@@ -4,7 +4,7 @@ const
   , webpackStream = require('webpack-stream')
   , webpack = require('webpack')
   , browserSync = require('browser-sync')
-  , webpackConf = require('../webpack/webpack.config')
+  , webpackDevConf = require('../webpack/webpack.dev.config.js')
   , webpackBuildConf = require('../webpack/webpack.build.config')
   ;
 
@@ -14,7 +14,7 @@ gulp.task('pack', function () {
   return gulp
     .src(srcPaths.scripts)
     .pipe(plumber())
-    .pipe(webpackStream(webpackConf, webpack))
+    .pipe(webpackStream(webpackDevConf, webpack))
     .pipe(gulp.dest('dist/scripts'))
     .pipe(browserSync.reload({
       stream: true
