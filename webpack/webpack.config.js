@@ -19,10 +19,8 @@ module.exports = {
     filename: "[name]-[hash:6].js"
   },
 
-  debug: true,
-
   resolve: {
-    'root': [
+    modules: [
       path.resolve('./app'),
       path.resolve('./node_modules'),
     ],
@@ -30,23 +28,19 @@ module.exports = {
       'iscroll': path.resolve('./node_modules', 'iscroll', 'build', 'iscroll-lite.js'),
       'fastclick': path.resolve('./node_modules', 'fastclick', 'lib', 'fastclick.js'),
     },
-    'extensions': ['', '.js', '.pug']
+    'extensions': ['.js', '.pug']
   },
 
   module: {
-    loaders: [
-      {
-        test: /\.json$/,
-        loader: "json"
-      },
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loader: 'babel-loader'
       },
       {
         test: /\.pug$/,
-        loader: 'pug'
+        loader: 'pug-loader'
       },
     ]
   },
