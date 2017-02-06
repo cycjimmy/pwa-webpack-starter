@@ -3,9 +3,10 @@
  */
 
 const
-  requireDir = require('require-dir'),
-  gulp = require('gulp'),
-  runSequence = require('run-sequence');
+  requireDir = require('require-dir')
+  , gulp = require('gulp')
+  , runSequence = require('run-sequence')
+  ;
 
 
 //入口路径
@@ -28,19 +29,19 @@ requireDir('./gulp', {recurse: false});
 
 //默认任务
 gulp.task('default', function (callback) {
-  runSequence('clean', ['sass', 'pack'], ['browserSync', 'watch'],
+  runSequence('clean', ['pack'], ['browserSync', 'watch'],
     callback
-  )
+  );
 });
 
 //监听
 gulp.task('watch', function () {
-  gulp.watch(srcPaths.sass, ['sass']);                               //监听scss文件变化
   gulp.watch([
+      srcPaths.sass,
       srcPaths.scripts,
       srcPaths.view
     ],
-    ['pack']);             //监听JS,pug文件变化
+    ['pack']);             //监听scss,JS,pug文件变化
 });
 
 

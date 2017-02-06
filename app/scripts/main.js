@@ -1,3 +1,5 @@
+import * as style from '../sass/main';
+
 import FastClick from 'fastclick';
 
 import Demo from './component/Demo.component';

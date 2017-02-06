@@ -3,26 +3,17 @@
  */
 
 const
-  gulp = require('gulp'),
-  runSequence = require('run-sequence'),
-  cssnano = require('gulp-cssnano'),
-  imagemin = require('gulp-imagemin');
+  gulp = require('gulp')
+  , runSequence = require('run-sequence')
+  , imagemin = require('gulp-imagemin')
+  ;
 
 //build
 gulp.task('build', function (callback) {
-  runSequence('clean:build', 'sass', 'pack:build',
-    ['cssnano', 'images', 'copyOther'],
+  runSequence('pack:build',
+    ['images', 'copyOther'],
     callback
   )
-});
-
-
-//压缩合并
-gulp.task('cssnano', function () {
-  return gulp
-    .src('dist/style/*.css')
-    .pipe(cssnano())                   //压缩CSS
-    .pipe(gulp.dest('build/style'));
 });
 
 //压缩图片
