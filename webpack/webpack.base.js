@@ -4,8 +4,11 @@
 
 const
   path = require('path')
+  , autoprefixer = require('autoprefixer')
   , webpack = require('webpack')
   , CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
+  , LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
+  , ExtractTextPlugin = require('extract-text-webpack-plugin')
   ;
 
 module.exports = {
@@ -42,6 +45,69 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+      },
+
+      //样式
+      //提取
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        include: path.resolve('app', 'sass'),
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2,
+                modules: true,
+                localIdentName: '[name]__[local]_[hash:base64:6]',
+              }
+            },
+            {
+              loader: 'postcss-loader',
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                outputStyle: 'expanded',
+                sourceMap: true,
+                sourceMapContents: true
+              }
+            }
+          ],
+        })
+      },
+
+      //模块化
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        include: path.resolve('app', 'scripts'),
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              modules: true,
+              localIdentName: '[name]__[local]_[hash:base64:6]',
+            }
+          },
+          {
+            loader: 'postcss-loader',
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              outputStyle: 'expanded',
+              sourceMap: true,
+              sourceMapContents: true
+            }
+          }
+        ]
       },
 
       //图片
@@ -132,5 +198,34 @@ module.exports = {
       names: ["bundle", "vendor"],
       minChunks: Infinity,
     }),
+
+    new ExtractTextPlugin({
+      filename: 'style/[name]-[hash:6].css',
+      disable: false,
+      allChunks: true,
+    }),
+
+    new LoaderOptionsPlugin({
+      options: {
+        context: '/',
+        postcss: [
+          autoprefixer({
+            browsers: [
+              'last 4 versions',
+              'ie >= 10',
+              'ie_mob >= 10',
+              'ff >= 30',
+              'chrome >= 34',
+              'safari >= 8',
+              'opera >= 23',
+              'ios >= 8',
+              'android >= 4.4',
+              'bb >= 10',
+            ],
+          }),
+        ],
+      },
+    }),
+
   ],
 };

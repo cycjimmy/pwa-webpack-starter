@@ -5,6 +5,7 @@
 
 import Templates from '../share/Templates';
 import mainSct from './mainSct';
+import mainSctStyle from './mainSct.style.scss';
 
 import indexSvgIcon from '../../images/icons/index.svg';
 
@@ -24,8 +25,11 @@ export default class MainSctComponent {
 
     //加载流程
     return new Promise(resolve => {
+      let
+        style = mainSctStyle;
+
       //将insidePageFrame放入insidePage
-      new Templates(mainSct, eContext, {indexSvgIcon}).load();
+      new Templates(mainSct, eContext, {indexSvgIcon, style}).load();
 
       setTimeout(() => {
         resolve(); //加载完传出状态

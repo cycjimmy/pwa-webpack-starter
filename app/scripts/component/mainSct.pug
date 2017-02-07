@@ -2,6 +2,7 @@
    Created by cyc on 2017/2/7.
    中间区块
    indexSvgIcon: 图标文件
+   style: 样式文件
 
 
 
@@ -26,7 +27,7 @@ h2 welcome!
 
 mixin iconList(name, id)
   li
-    svg.icon(aria-hidden='true')
+    svg(class = style.icon, aria-hidden='true')
       use(xlink:href=indexSvgIcon + '#' + id)
     span #{name}
 

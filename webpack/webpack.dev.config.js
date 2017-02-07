@@ -17,35 +17,6 @@ module.exports = webpackMerge(webpackBase, {
     path: path.resolve('./dist'),
   },
 
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-              modules: true,
-              localIdentName: '[name]__[local]_[hash:base64:5]',
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              outputStyle: 'expanded',
-              sourceMap: true,
-              sourceMapContents: true
-            }
-          }
-        ]
-      }
-    ]
-  },
-
   plugins: [
     new DefinePlugin({
       'process.env': {
@@ -68,10 +39,6 @@ module.exports = webpackMerge(webpackBase, {
     new BrowserSyncPlugin(browserSyncConfig({
       server: {
         baseDir: 'dist',
-        routes: {
-          "/node_modules": "node_modules",
-          "/images": "app/images",
-        },
       },
     }), {
       reload: true,

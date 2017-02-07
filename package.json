@@ -1,6 +1,6 @@
 {
   "name": "gulp-temp",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Gulp template starter: Webpack2 Sass Pug Babel",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "keywords": [
     "gulp",
-    "webpack",
+    "webpack2",
     "sass",
     "babel",
     "pug"

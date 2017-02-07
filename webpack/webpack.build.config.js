@@ -1,6 +1,5 @@
 const
   path = require('path')
-  , autoprefixer = require('autoprefixer')
   , webpack = require('webpack')
   , webpackMerge = require('webpack-merge')
   , webpackBase = require("./webpack.base.js")
@@ -12,8 +11,6 @@ const
   , DefinePlugin = require('webpack/lib/DefinePlugin')
   , UglifyJsPlugin = require('uglifyjs-webpack-plugin')
   , CleanWebpackPlugin = require('clean-webpack-plugin')
-  , ExtractTextPlugin = require('extract-text-webpack-plugin')
-  , LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
   ;
 
 
@@ -24,38 +21,6 @@ module.exports = webpackMerge(webpackBase, {
     path: path.resolve('./build'),
   },
 
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-                modules: true,
-                localIdentName: '[name]__[local]_[hash:base64:5]',
-              }
-            },
-            {
-              loader: 'postcss-loader',
-            },
-            {
-              loader: 'sass-loader',
-              options: {
-                outputStyle: 'expanded',
-                sourceMap: true,
-                sourceMapContents: true
-              }
-            }
-          ],
-        })
-      }
-    ]
-  },
 
   plugins: [
     new HtmlWebpackPlugin({
@@ -89,12 +54,6 @@ module.exports = webpackMerge(webpackBase, {
       }
     }),
 
-    new ExtractTextPlugin({
-      filename: 'style/[name]-[hash:6].css',
-      disable: false,
-      allChunks: true,
-    }),
-
     // 压缩JS代码
     new UglifyJsPlugin({
       beautify: false,
@@ -115,28 +74,6 @@ module.exports = webpackMerge(webpackBase, {
         screw_ie8: true
       },
       sourceMap: true,
-    }),
-
-    new LoaderOptionsPlugin({
-      options: {
-        context: '/',
-        postcss: [
-          autoprefixer({
-            browsers: [
-              'last 4 versions',
-              'ie >= 10',
-              'ie_mob >= 10',
-              'ff >= 30',
-              'chrome >= 34',
-              'safari >= 8',
-              'opera >= 23',
-              'ios >= 8',
-              'android >= 4.4',
-              'bb >= 10',
-            ],
-          }),
-        ],
-      },
     }),
 
     new BrowserSyncPlugin(browserSyncConfig({
