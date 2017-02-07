@@ -3,20 +3,20 @@
  */
 
 const
-  gulp = require('gulp')
+  fs = require('fs')
+  , path = require('path')
+  , gulp = require('gulp')
   , runSequence = require('run-sequence')
   , merge = require('merge-stream')
   , svgstore = require('gulp-svgstore')
   , imagemin = require('gulp-imagemin')
-  , fs = require('fs')
-  , path = require('path')
   ;
 
 
 function getFolders(dir) {
   return fs
     .readdirSync(dir)
-    .filter(function (file) {
+    .filter(file => {
       return fs
         .statSync(path.join(dir, file))
         .isDirectory();
@@ -25,12 +25,12 @@ function getFolders(dir) {
 
 
 //svg图标合并
-gulp.task('svgstore:noClean', function () {
+gulp.task('svgstore:noClean', () => {
 
   let
     iconPath = srcPaths.icons
     , folders = getFolders(iconPath)
-    , tasks = folders.map(function (folder) {
+    , tasks = folders.map(folder => {
       return gulp
         .src(path.join(iconPath, folder, '/*.svg'))    //路径拼接
         .pipe(imagemin())                              //压缩svg
@@ -42,7 +42,7 @@ gulp.task('svgstore:noClean', function () {
 });
 
 
-gulp.task('svgstore', function (callback) {
+gulp.task('svgstore', callback => {
   runSequence('clean:icon', 'svgstore:noClean',
     callback
   );

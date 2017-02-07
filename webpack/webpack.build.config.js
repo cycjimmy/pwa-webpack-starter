@@ -4,8 +4,10 @@ const
   , webpack = require('webpack')
   , webpackMerge = require('webpack-merge')
   , webpackBase = require("./webpack.base.js")
+  , browserSyncConfig = require('./browserSync.config')
 
   //webpack插件
+  , BrowserSyncPlugin = require('browser-sync-webpack-plugin')
   , HtmlWebpackPlugin = require('html-webpack-plugin')
   , DefinePlugin = require('webpack/lib/DefinePlugin')
   , UglifyJsPlugin = require('uglifyjs-webpack-plugin')
@@ -22,14 +24,13 @@ module.exports = webpackMerge(webpackBase, {
     path: path.resolve('./build'),
   },
 
-
   module: {
     rules: [
       {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
+          fallback: 'style-loader',
           use: [
             {
               loader: 'css-loader',
@@ -80,7 +81,6 @@ module.exports = webpackMerge(webpackBase, {
       root: path.resolve('./'),
       verbose: true,
       dry: false,
-      //exclude: ['shared.js'],
     }),
 
     new DefinePlugin({
@@ -89,20 +89,23 @@ module.exports = webpackMerge(webpackBase, {
       }
     }),
 
-
     new ExtractTextPlugin({
-      filename: '[name]-[hash:6].css',
+      filename: 'style/[name]-[hash:6].css',
       disable: false,
       allChunks: true,
     }),
 
     // 压缩JS代码
     new UglifyJsPlugin({
+      beautify: false,
+      comments: false,
       compress: {
         screw_ie8: true,
         warnings: false,
         drop_debugger: true,
-        drop_console: true
+        drop_console: true,
+        collapse_vars: true,
+        reduce_vars: true,
       },
       mangle: {
         screw_ie8: true
@@ -136,6 +139,17 @@ module.exports = webpackMerge(webpackBase, {
       },
     }),
 
-
+    new BrowserSyncPlugin(browserSyncConfig({
+      server: {
+        baseDir: 'build',
+      },
+      port: 4000,
+      ui: {
+        port: 4001
+      },
+      logLevel: "warn",
+    }), {
+      reload: false,
+    }),
   ],
 });

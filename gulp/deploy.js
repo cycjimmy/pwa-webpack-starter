@@ -8,7 +8,7 @@ const
 
 
 //部署到ghPages
-gulp.task('deploy', function () {
+gulp.task('deploy', ()=> {
   return gulp.src('./build/**/*')
     .pipe(ghPages());
 });

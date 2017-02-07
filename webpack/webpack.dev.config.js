@@ -2,13 +2,13 @@
   path = require('path')
   , webpackMerge = require('webpack-merge')
   , webpackBase = require("./webpack.base.js")
-
-  , getDataAjax = require('../mock/getData.ajax')
+  , browserSyncConfig = require('./browserSync.config')
 
   //webpack插件
   , BrowserSyncPlugin = require('browser-sync-webpack-plugin')
   , HtmlWebpackPlugin = require('html-webpack-plugin')
   , DefinePlugin = require('webpack/lib/DefinePlugin')
+  , CleanWebpackPlugin = require('clean-webpack-plugin')
   ;
 
 module.exports = webpackMerge(webpackBase, {
@@ -53,31 +53,29 @@ module.exports = webpackMerge(webpackBase, {
       }
     }),
 
+    new CleanWebpackPlugin(['dist'], {
+      root: path.resolve('./'),
+      verbose: true,
+      dry: false,
+    }),
+
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve('./app', 'view', 'index.pug'),   // 模板位置
       //filename: '../index.html',
     }),
 
-    new BrowserSyncPlugin({
+    new BrowserSyncPlugin(browserSyncConfig({
       server: {
-        baseDir: 'dist',                                   //目录
+        baseDir: 'dist',
         routes: {
           "/node_modules": "node_modules",
           "/images": "app/images",
         },
-        //https: true,
       },
-      ghostMode: false,
-      logLevel: "debug",
-      middleware: [
-        {
-          route: "/getData",
-          handle: getDataAjax(),
-        },
-      ],
+    }), {
+      reload: true,
     }),
-
 
   ],
 });

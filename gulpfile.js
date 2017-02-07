@@ -25,24 +25,17 @@ global.srcPaths = {
 
 
 // Require all tasks in the 'gulp' folder.
-requireDir('./gulp', {recurse: false});
+requireDir('./gulp', {
+  recurse: false
+});
 
 //默认任务
-gulp.task('default', function (callback) {
-  runSequence('clean', ['pack'], ['browserSync', 'watch'],
+gulp.task('default', callback=> {
+  runSequence('pack:dev',
     callback
   );
 });
 
-//监听
-gulp.task('watch', function () {
-  gulp.watch([
-      srcPaths.sass,
-      srcPaths.scripts,
-      srcPaths.view
-    ],
-    ['pack']);             //监听scss,JS,pug文件变化
-});
 
 
 
