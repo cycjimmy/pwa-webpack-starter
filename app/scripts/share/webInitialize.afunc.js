@@ -5,10 +5,10 @@
 import {getUrlRelativeDir} from './awesome.func';
 import Templates from './Templates';
 import xhrData from './xhrData.func';
-import tpl from '../templates/tpl';
-import tpl1 from '../templates/tpl1';
+import * as tpl from '../templates/tpl.pug';
+import * as tpl1 from '../templates/tpl1.pug';
 
-import snoopyPic from '../../images/snoopy.jpg';
+import * as snoopyPic from '../../../static/images/snoopy.jpg';
 
 //组件
 import DemoComponent from '../component/Demo.component';

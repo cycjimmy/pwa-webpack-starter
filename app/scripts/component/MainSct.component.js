@@ -4,10 +4,10 @@
 
 
 import Templates from '../share/Templates';
-import mainSct from './mainSct';
-import mainSctStyle from './mainSct.style.scss';
+import * as mainSct from './mainSct.pug';
+import * as mainSctStyle from './mainSct.style.scss';
 
-import indexSvgIcon from '../../images/icons/index.svg';
+import * as indexSvgIcon from '../../../static/images/icons/index.svg';
 
 //服务
 //...

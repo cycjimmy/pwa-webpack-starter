@@ -27,7 +27,7 @@ module.exports = webpackMerge(webpackBase, {
       inject: true,
       template: path.resolve('./app', 'view', 'index.pug'),   // 模板位置
       //filename: '../index.html',
-      //favicon: path.resolve('./app', 'static', 'favicon.ico'),
+      favicon: path.resolve('./static', 'favicon.ico'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,

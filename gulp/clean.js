@@ -10,6 +10,6 @@ const
 
 //清空icon
 gulp.task('clean:icon', callback => {
-  del('app/images/icons');
+  del(srcPaths.icons.to);
   return cache.clearAll(callback);
 });

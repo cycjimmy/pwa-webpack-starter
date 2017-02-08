@@ -8,18 +8,13 @@ const
   , runSequence = require('run-sequence')
   ;
 
-
 //入口路径
 global.srcPaths = {
-  sass: 'app/sass/**/*.scss',                       //sass文件
-  view: 'app/view/**/*',                            //静态pug模板
-  scripts: 'app/scripts/**/*',                      //js文件路径
-  style: 'app/style/',                              //css文件路径
-  icons: 'app/icons/',                              //输入图标源
-  img: [                                            //输入图片源
-    'app/images/**/*.+(png|jpg|gif|svg)',
-    '!app/images/icons/**/*'
-  ],
+  icons: {                                          //图标
+    from: 'static/icons/',
+    to: 'static/images/icons/',
+  },
+  build : 'build/**/*',                             //最终出口
   node_modules: "node_modules"                      //node_modules包入口
 };
 
@@ -30,7 +25,7 @@ requireDir('./gulp', {
 });
 
 //默认任务
-gulp.task('default', callback=> {
+gulp.task('default', callback => {
   runSequence('pack:dev',
     callback
   );

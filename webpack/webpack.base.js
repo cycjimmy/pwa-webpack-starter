@@ -11,6 +11,26 @@ const
   , ExtractTextPlugin = require('extract-text-webpack-plugin')
   ;
 
+
+let
+  cssLoader = {
+    loader: 'css-loader',
+    options: {
+      importLoaders: 2,
+      modules: true,
+      localIdentName: '[name]__[local]_[hash:base64:6]',
+    }
+  },
+  sassLoader = {
+    loader: 'sass-loader',
+    options: {
+      outputStyle: 'expanded',
+      sourceMap: true,
+      sourceMapContents: true
+    }
+  };
+
+
 module.exports = {
 
   entry: {
@@ -35,7 +55,7 @@ module.exports = {
       'iscroll': path.resolve('./node_modules', 'iscroll', 'build', 'iscroll-lite.js'),
       'fastclick': path.resolve('./node_modules', 'fastclick', 'lib', 'fastclick.js'),
     },
-    'extensions': ['.js', '.pug', '.scss']
+    'extensions': ['.js']
   },
 
   module: {
@@ -56,25 +76,11 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-                modules: true,
-                localIdentName: '[name]__[local]_[hash:base64:6]',
-              }
-            },
+            cssLoader,
             {
               loader: 'postcss-loader',
             },
-            {
-              loader: 'sass-loader',
-              options: {
-                outputStyle: 'expanded',
-                sourceMap: true,
-                sourceMapContents: true
-              }
-            }
+            sassLoader,
           ],
         })
       },
@@ -88,25 +94,11 @@ module.exports = {
           {
             loader: 'style-loader'
           },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-              modules: true,
-              localIdentName: '[name]__[local]_[hash:base64:6]',
-            }
-          },
+          cssLoader,
           {
             loader: 'postcss-loader',
           },
-          {
-            loader: 'sass-loader',
-            options: {
-              outputStyle: 'expanded',
-              sourceMap: true,
-              sourceMapContents: true
-            }
-          }
+          sassLoader,
         ]
       },
 
@@ -115,13 +107,13 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         exclude: [
           path.resolve('node_modules'),
-          path.resolve('app', 'images', 'icons'),
+          path.resolve('static', 'images', 'icons'),
         ],
         use: [
           {
             loader: 'url-loader',
             options: {
-              limit: 4096,
+              limit: 2048,
               name: 'images/[name]-[hash:6].[ext]',
             }
           },
@@ -158,7 +150,7 @@ module.exports = {
       {
         test: /\.svg$/,
         exclude: /node_modules/,
-        include: path.resolve('app', 'images', 'icons'),
+        include: path.resolve('static', 'images', 'icons'),
         use: [
           {
             loader: 'file-loader',

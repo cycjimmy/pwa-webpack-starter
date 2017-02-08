@@ -3,12 +3,13 @@
  */
 
 const
-  gulp = require('gulp'),
-  ghPages = require('gulp-gh-pages');
+  gulp = require('gulp')
+  , ghPages = require('gulp-gh-pages')
+  ;
 
 
 //部署到ghPages
-gulp.task('deploy', ()=> {
-  return gulp.src('./build/**/*')
+gulp.task('deploy', () => {
+  return gulp.src(srcPaths.build)
     .pipe(ghPages());
 });

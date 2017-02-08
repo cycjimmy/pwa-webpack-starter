@@ -13,7 +13,7 @@ const
   ;
 
 
-function getFolders(dir) {
+let getFolders = dir => {
   return fs
     .readdirSync(dir)
     .filter(file => {
@@ -21,26 +21,25 @@ function getFolders(dir) {
         .statSync(path.join(dir, file))
         .isDirectory();
     });
-}
+};
 
 
 //svg图标合并
 gulp.task('svgstore:noClean', () => {
 
   let
-    iconPath = srcPaths.icons
+    iconPath = srcPaths.icons.from
     , folders = getFolders(iconPath)
     , tasks = folders.map(folder => {
       return gulp
         .src(path.join(iconPath, folder, '/*.svg'))    //路径拼接
-        .pipe(imagemin())                              //压缩svg
-        .pipe(svgstore())                              //合并svg
-        .pipe(gulp.dest('app/images/icons'));
+        .pipe(imagemin())                                   //压缩svg
+        .pipe(svgstore())                                   //合并svg
+        .pipe(gulp.dest(srcPaths.icons.to));
     });
 
   return merge(tasks);
 });
-
 
 gulp.task('svgstore', callback => {
   runSequence('clean:icon', 'svgstore:noClean',

@@ -12,7 +12,7 @@ const
   wss = new WebSocketServer({
     port: 3333
   }),
-  data = require('../data.json');
+  data = require('../api/data.json');
 
 wss.on('connection', function connection(ws) {
   console.log('Socket已启动');

@@ -1,20 +1,19 @@
 /**
  * Created by cyc on 2016/11/23.
+ * 一些自用方法
  */
 
 // 单词首字母大写
-const firstUpperCase = (str) => {
-  return str.replace(/\b(\w)(\w*)/g, ($0, $1, $2)=> {
+const firstUpperCase = str => {
+  return str.replace(/\b(\w)(\w*)/g, ($0, $1, $2) => {
     return $1.toUpperCase() + $2.toLowerCase();
   });
 };
 
 //中线命名转变成驼峰命名法
-const strToCamel = (str) => {
+const strToCamel = str => {
   let re = /-(\w)/g;
-  return str.replace(re, ($0, $1) => {
-    return $1.toUpperCase();
-  });
+  return str.replace(re, ($0, $1) => $1.toUpperCase());
 };
 
 //取得url相对路径根目录

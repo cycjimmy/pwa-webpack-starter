@@ -3,7 +3,7 @@
  */
 
 const
-  getDataAjax = require('../mock/getData.ajax')
+  getDataAjax = require('../mock/api/getData.ajax.js')
   ;
 
 
