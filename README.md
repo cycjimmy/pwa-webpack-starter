@@ -11,28 +11,27 @@ $ yarn install
 
 ## Main directory structure
 ```text
-/app                # Project entry
-  ...
-/gulp               # Gulp task
-  ...
-/mock               # Mock data entry
-  /api              
-    ...
-  /webSocket
-    ...
-/static             # Static file
-  /icons            # Svg icons entry (raw)
-    /...
-  /images           # Pictures
-    /icons          # Svg icons(processed)
-    ...             # Other pictures
-  /view             # Static pug template
-    ...
-  favicon.ico       # Icon file
-/webpack            # Webpack configuration file
-  ...
-gulpfile.js         # Gulp entry
-...
+gulp-temp
+ │
+ ├─app/               # Project entry folder
+ │   └─...
+ ├─gulp/              # Gulp tasks folder
+ │   └─...
+ ├─mock/              # Mock data entry folder
+ │   ├─api/
+ │   └─webSocket/
+ ├─static/            # Static folder
+ │   ├─icons/         # Svg icons entry folder (raw)
+ │   ├─images/        # Pictures folder
+ │   │   ├──icons/    # Svg icons folder (processed)
+ │   │   └──...       # Other pictures
+ │   ├─view/          # Static pug template folder
+ │   │   └──... 
+ │   └─favicon.ico    # Icon file
+ ├─webpack/           # Webpack configuration folder
+ │   └─...            # Webpack configuration files
+ ├─gulpfile.js        # Gulp file entry
+ └─...
 ```
 
 ## task
