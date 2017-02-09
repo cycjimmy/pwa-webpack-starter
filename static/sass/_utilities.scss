@@ -1,0 +1,55 @@
+//中央居中
+//$offset 偏移量
+@mixin fix-center($offset: -100%, $ex: false, $l: false, $t: false, $r: false, $b: false) {
+  position: absolute;
+  margin: auto;
+  @if ($ex == false) {
+    left: $offset;
+    top: $offset;
+    right: $offset;
+    bottom: $offset;
+  } @else {
+    @if ($l) {
+      left: $l;
+    }
+    @if ($t) {
+      top: $t;
+    }
+    @if ($r) {
+      right: $r;
+    }
+    @if ($b) {
+      bottom: $b;
+    }
+  }
+}
+
+//flex容器内部元素对齐方法
+//可选参数:false(默认), center(居中), flex-end(尾部)
+@mixin flex-box-align($cross:false, $vertical:false) {
+  @if ($cross != false) {
+    justify-content: $cross;
+  }
+  @if ($vertical != false) {
+    align-items: $vertical;
+  }
+}
+
+//方形容器
+@mixin square-wrap($width:100%) {
+  height: 0;
+  width: $width;
+  padding-bottom: $width;
+}
+
+@mixin square-wrap-vw($vw) {
+  $max: round($vw*16 /9 *100)/100;
+  $min: round($vw*3 /2 *100)/100;
+
+  width: $vw + vw;
+  height: $vw + vw;
+  min-width: $min + vh;
+  max-width: $max + vh;
+  min-height: $min + vh;
+  max-height: $max + vh;
+}

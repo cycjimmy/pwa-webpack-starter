@@ -1,0 +1,77 @@
+@import 'variables';
+@import 'utilities';
+/*---------------------------
+ * 样式重置
+ *---------------------------*/
+@import "reset";
+
+html {
+  font-size: 100px;
+  line-height: 1.4;
+}
+
+body {
+  font-size: $fontM;
+  font-family: -apple-system-font, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: $fontColor;
+  background-color: $bgc;
+}
+
+:global{
+  .icon { //图标用样式
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+
+    svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+
+
+/*---------------------------
+ * 主体框架
+ *---------------------------*/
+:global {
+  .main-screen {
+    @include fix-center(0);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    //头部
+    > header {
+      height: 8vh;
+    }
+
+    //中间
+    > main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      @include flex-box-align(center, center);
+    }
+
+    //底部
+    > footer {
+      height: 8vh;
+      display: flex;
+      @include flex-box-align(center, center);
+
+      color: darken($fontColor, 20%);
+      font-size: $fontS;
+    }
+  }
+}
+
+
+
+
+

@@ -1,0 +1,15 @@
+@import '../../static/sass/variables';
+
+.foot {
+  height: $fontL;
+  width: $fontL;
+  margin-right: $space / 4;
+
+  svg {
+    fill: darken($fontColor, 20%);
+  }
+}
+
+.environment {
+  color: $fontColor;
+}

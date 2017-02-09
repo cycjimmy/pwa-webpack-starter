@@ -4,13 +4,11 @@
 
 
 import Templates from '../share/Templates';
-import * as mainSct from './mainSct.pug';
-import * as mainSctStyle from './mainSct.style.scss';
+import * as main from './main.pug';
+import * as mainStyle from './main.scss';
+import * as indexIcons from '../../static/images/icons/index.svg';
+import * as info from '../info.json';
 
-import * as indexSvgIcon from '../../../static/images/icons/index.svg';
-
-//服务
-//...
 
 export default class MainSctComponent {
   constructor() {
@@ -26,10 +24,10 @@ export default class MainSctComponent {
     //加载流程
     return new Promise(resolve => {
       let
-        style = mainSctStyle;
+        style = mainStyle;
 
       //将insidePageFrame放入insidePage
-      new Templates(mainSct, eContext, {indexSvgIcon, style}).load();
+      new Templates(main, eContext, {info, style, indexIcons}).load();
 
       setTimeout(() => {
         resolve(); //加载完传出状态

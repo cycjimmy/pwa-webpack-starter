@@ -1,0 +1,12 @@
+//-
+   Created by cyc on 2017/2/8.
+
+mixin icon(url,className)
+
+  - var addClass = '';
+  if className
+    - addClass = className;
+
+  span.icon(class=addClass)
+    svg(aria-hidden="true")
+      use(xlink:href=url)

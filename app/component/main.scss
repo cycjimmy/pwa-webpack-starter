@@ -1,0 +1,54 @@
+@import "../../static/sass/variables";
+@import "../../static/sass/utilities";
+
+h1 {
+  position: relative;
+  font-size: .36rem;
+  font-weight: bold;
+
+  span {
+    position: absolute;
+    bottom: .04rem;
+    font-size: $fontM;
+    font-style: italic;
+    padding-left: .04rem;
+    font-weight: normal;
+  }
+}
+
+.lead {
+  padding: $space 0;
+}
+
+.gotoGithub {
+  margin-top: $space * 2;
+  padding: $space;
+  border: .01rem solid $fontColor;
+  border-radius: $radius;
+  font-size: $fontL;
+
+  &:hover {
+    color: $bgc;
+    background-color: $fontColor;
+  }
+}
+
+.lastUpdated {
+  font-size: $fontS;
+  padding: $space /2;
+  display: flex;
+  @include flex-box-align(center, center);
+
+  :global {
+    .icon {
+      height: $fontL;
+      width: $fontL;
+      margin-right: $space /4;
+
+      svg {
+        fill: $fontColor;
+      }
+    }
+  }
+
+}

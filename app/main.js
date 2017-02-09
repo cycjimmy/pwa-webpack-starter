@@ -1,5 +1,5 @@
-import '../sass/main.scss';
-//import * as style from '../sass/main';
+// global css
+import '../static/sass/main.scss';
 
 import FastClick from 'fastclick';
 import webInitialize from './share/webInitialize.afunc';

@@ -38,7 +38,7 @@ module.exports = {
       "iscroll",
       "fastclick",
     ],
-    "bundle": path.resolve('./app', 'scripts', 'main.js')
+    "bundle": path.resolve('./app', 'main.js')
   },
 
   output: {
@@ -72,7 +72,7 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        include: path.resolve('app', 'sass'),
+        include: path.resolve('static', 'sass'),
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -89,7 +89,7 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        include: path.resolve('app', 'scripts'),
+        include: path.resolve('app'),
         use: [
           {
             loader: 'style-loader'

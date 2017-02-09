@@ -31,7 +31,7 @@ module.exports = webpackMerge(webpackBase, {
     }),
 
     new HtmlWebpackPlugin({
-      inject: true,
+      //inject: true,
       template: path.resolve('static', 'view', 'index.pug'),   // 模板位置
       favicon: path.resolve('static', 'favicon.ico'),
       //filename: '../index.html',

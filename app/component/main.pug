@@ -1,0 +1,21 @@
+//-
+   Created by cyc on 2017/2/8.
+   中间区块
+   info：信息json对象
+   indexIcons: 图标文件
+   style: 样式文件
+
+include ../share/icon.mixin.pug
+
+h1
+  | #{info.title}
+  span #{info.version}
+
+p(class=style.lead) #{info.lead}
+
+a#gotoGithub(class=style.gotoGithub, href=info.repository) View on Github
+
+p(class=style.lastUpdated)
+  +icon(indexIcons + '#update')
+  | Last Updated: #{info.lastUpdated}
+
