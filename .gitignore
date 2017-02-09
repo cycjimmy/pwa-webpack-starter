@@ -47,15 +47,17 @@ Temporary Items
 .apdisk
 
 
-# extra
-node_modules
-.idea
-npm-debug.log
+# IDE
+.idea/
 
-/bower_components/
-/app/style/
-/.publish/
-/dist/
-/build/
-/yarn.lock
-/yarn-error.log
+# nodejs
+node_modules/
+npm-debug.log
+yarn-error.log
+bower_components/
+
+# project
+.publish/
+dist/
+build/
+

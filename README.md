@@ -1,84 +1,54 @@
-## gulp-temp (a gulp template)
+# gulp-temp (a gulp template starter)
 
-gulp自动化 webpage
+Personal front-end automation solutions for webpage.
 
-## 使用
+## Installation
 ```shell
-$ git clone https://github.com/cycjimmy/gulp-temp.git MyApp
 $ npm install
-$ npm start
+# or
+$ yarn install
 ```
 
-## 目录结构
-同文件目录，略
+## Main directory structure
+```text
+/app                # Project entry
+  ...
+/gulp               # Gulp task
+  ...
+/mock               # Mock data entry
+  /api              
+    ...
+  /webSocket
+    ...
+/static             # Static file
+  /icons            # Svg icons entry (raw)
+    /...
+  /images           # Pictures
+    /icons          # Svg icons(processed)
+    ...             # Other pictures
+  /view             # Static pug template
+    ...
+  favicon.ico       # Icon file
+/webpack            # Webpack configuration file
+  ...
+gulpfile.js         # Gulp entry
+...
+```
 
-## 插件列表
-* browser-sync
-* gulp-webpack
-* gulp-sass
-* gulp-autoprefixer
-* gulp-cssnano
-* gulp-gh-pages
-* gulp-imagemin
-* gulp-svgstore
+## task
+```shell
+# Run in development
+$ npm start
 
-## 任务说明
-### 主要任务
-* **pack**
+# Build for production
+$ npm run build
 
-    打包js模块
-    ```shell
-    $ gulp pack
-    ```
-    
-* **sass**
+# svg icon
+$ npm run svg
 
-    编译sass,自动加前缀,输出css
-    ```shell
-    $ gulp sass
-    ```
+# deploy to gh-pages
+$ npm run deploy
+```
 
-* **svgstore**
-
-    合并svg(同svg精灵)
-    ```shell
-    $ gulp svgstore
-    ```
-    
-* **browserSync**
-
-    自动刷新web服务器
-    ```shell
-    $ gulp browserSync
-    ```
-
-* **deploy**
-
-    将dist目录部署到gh-pages
-    ```shell
-    $ gulp deploy
-    ```
-
-### 组合任务
-* **default**
-
-    默认任务，自动执行**sass**，**ts**, **browserSync**，**watch**
-    ```shell
-    $ gulp
-    ```
-
-* **watch**
-
-    监听文件变化，并刷新浏览器
-    ```shell
-    $ gulp watch
-    ```
-
-* **build**
-
-    将文件打包压缩到build目录
-    ```shell
-    $ gulp build
-    ```    
 
 
