@@ -24,7 +24,7 @@ let getFolders = dir => {
 };
 
 
-//svg图标合并
+// Svg sprite
 gulp.task('svgstore:noClean', () => {
 
   let
@@ -32,9 +32,9 @@ gulp.task('svgstore:noClean', () => {
     , folders = getFolders(iconPath)
     , tasks = folders.map(folder => {
       return gulp
-        .src(path.join(iconPath, folder, '/*.svg'))    //路径拼接
-        .pipe(imagemin())                                   //压缩svg
-        .pipe(svgstore())                                   //合并svg
+        .src(path.join(iconPath, folder, '/*.svg'))     // Path
+        .pipe(imagemin())                               // Compress svg
+        .pipe(svgstore())                               // Merge svg
         .pipe(gulp.dest(srcPaths.icons.to));
     });
 

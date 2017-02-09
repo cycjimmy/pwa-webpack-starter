@@ -4,13 +4,16 @@ const
   , webpackMerge = require('webpack-merge')
   , webpackBase = require("./webpack.base.js")
   , browserSyncConfig = require('./browserSync.config')
+  , styleLoadersConfig = require('./styleLoaders.config')()
 
-  //webpack插件
+  // Webpack Plugin
   , BrowserSyncPlugin = require('browser-sync-webpack-plugin')
   , HtmlWebpackPlugin = require('html-webpack-plugin')
   , DefinePlugin = require('webpack/lib/DefinePlugin')
   , UglifyJsPlugin = require('uglifyjs-webpack-plugin')
   , CleanWebpackPlugin = require('clean-webpack-plugin')
+  , LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
+  , ExtractTextPlugin = require('extract-text-webpack-plugin')
   ;
 
 
@@ -19,6 +22,26 @@ module.exports = webpackMerge(webpackBase, {
 
   output: {
     path: path.resolve('./build'),
+  },
+
+  module: {
+    rules: [
+      // Style
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            styleLoadersConfig.cssLoader,
+            {
+              loader: 'postcss-loader',
+            },
+            styleLoadersConfig.sassLoader,
+          ],
+        })
+      },
+    ]
   },
 
 
@@ -54,7 +77,7 @@ module.exports = webpackMerge(webpackBase, {
       }
     }),
 
-    // 压缩JS代码
+    // Uglify Js
     new UglifyJsPlugin({
       beautify: false,
       comments: false,
@@ -74,6 +97,19 @@ module.exports = webpackMerge(webpackBase, {
         screw_ie8: true
       },
       sourceMap: true,
+    }),
+
+    new ExtractTextPlugin({
+      filename: 'style/[name]-[hash:6].css',
+      disable: false,
+      allChunks: true,
+    }),
+
+    new LoaderOptionsPlugin({
+      options: {
+        context: '/',
+        postcss: styleLoadersConfig.postcssOptions,
+      },
     }),
 
     new BrowserSyncPlugin(browserSyncConfig({

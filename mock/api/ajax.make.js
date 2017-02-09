@@ -3,7 +3,7 @@
  */
 
 /**
- * ajax api模拟
+ * mock ajax api
  * @param apiName
  * @param data
  * @param timeout

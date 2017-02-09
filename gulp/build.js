@@ -7,7 +7,7 @@ const
   , runSequence = require('run-sequence')
   ;
 
-//build
+// Build task
 gulp.task('build', callback=> {
   runSequence('pack:build',
     callback

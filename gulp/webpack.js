@@ -10,12 +10,9 @@ gulp.task('pack:dev', shell.task([
 ]));
 
 gulp.task('pack:build', shell.task([
-  'webpack --config webpack/webpack.build.config.js --progress --display-error-details --optimize-minimize --color'
+  'cross-env NODE_ENV=production webpack --config webpack/webpack.build.config.js --progress --display-error-details --optimize-minimize --color'
 ]));
 
 gulp.task('pack:build:watch', shell.task([
-  'webpack --config webpack/webpack.build.config.js --progress --display-error-details --optimize-minimize --color --watch'
+  'cross-env NODE_ENV=production webpack --config webpack/webpack.build.config.js --progress --display-error-details --optimize-minimize --color --watch'
 ]));
-
-
-

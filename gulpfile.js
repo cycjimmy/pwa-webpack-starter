@@ -8,14 +8,14 @@ const
   , runSequence = require('run-sequence')
   ;
 
-//入口路径
+// srcPaths
 global.srcPaths = {
-  icons: {                                          //图标
+  icons: {                             // icons
     from: 'static/icons/',
     to: 'static/images/icons/',
   },
-  build : 'build/**/*',                             //最终出口
-  node_modules: "node_modules"                      //node_modules包入口
+  build : 'build/**/*',                // Eventually export
+  node_modules: "node_modules"         // Node dependent packages
 };
 
 
@@ -24,7 +24,7 @@ requireDir('./gulp', {
   recurse: false
 });
 
-//默认任务
+// default task
 gulp.task('default', callback => {
   runSequence('pack:dev',
     callback

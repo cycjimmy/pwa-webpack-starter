@@ -12,6 +12,7 @@ $ yarn install
 ## Main directory structure
 ```text
 /app                # Project entry
+  ...
 /gulp               # Gulp task
   ...
 /mock               # Mock data entry
@@ -25,8 +26,6 @@ $ yarn install
   /images           # Pictures
     /icons          # Svg icons(processed)
     ...             # Other pictures
-  /sass             # Static style file
-    ...
   /view             # Static pug template
     ...
   favicon.ico       # Icon file

@@ -57,6 +57,7 @@ body {
       display: flex;
       flex-direction: column;
       @include flex-box-align(center, center);
+      padding: $space * 2;
     }
 
     //底部

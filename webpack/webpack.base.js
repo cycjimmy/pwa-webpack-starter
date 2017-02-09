@@ -4,46 +4,25 @@
 
 const
   path = require('path')
-  , autoprefixer = require('autoprefixer')
   , webpack = require('webpack')
+
+  // Webpack Plugin
   , CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
-  , LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
-  , ExtractTextPlugin = require('extract-text-webpack-plugin')
   ;
 
-
-let
-  cssLoader = {
-    loader: 'css-loader',
-    options: {
-      importLoaders: 2,
-      modules: true,
-      localIdentName: '[name]__[local]_[hash:base64:6]',
-    }
-  },
-  sassLoader = {
-    loader: 'sass-loader',
-    options: {
-      outputStyle: 'expanded',
-      sourceMap: true,
-      sourceMapContents: true
-    }
-  };
-
-
 module.exports = {
-
   entry: {
     "vendor": [
       "iscroll",
       "fastclick",
     ],
-    "bundle": path.resolve('./app', 'main.js')
+    "main": path.resolve('./app', 'main.js'),
   },
 
   output: {
-    //publicPath: '/assets/',
-    filename: "[name]-[hash:6].js"
+    filename: "scripts/[name].bundle.[hash:6].js",
+    chunkFilename: 'scripts/[name].[chunkhash:6].chunk.js',
+    //publicPath: '/'
   },
 
   resolve: {
@@ -60,49 +39,14 @@ module.exports = {
 
   module: {
     rules: [
-      //脚本
+      // Scripts
       {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
 
-      //样式
-      //提取
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        include: path.resolve('static', 'sass'),
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            cssLoader,
-            {
-              loader: 'postcss-loader',
-            },
-            sassLoader,
-          ],
-        })
-      },
-
-      //模块化
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        include: path.resolve('app'),
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          cssLoader,
-          {
-            loader: 'postcss-loader',
-          },
-          sassLoader,
-        ]
-      },
-
-      //图片
+      // Pictures
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         exclude: [
@@ -145,8 +89,7 @@ module.exports = {
         ],
       },
 
-
-      //svg图标
+      // Svg icons
       {
         test: /\.svg$/,
         exclude: /node_modules/,
@@ -161,7 +104,7 @@ module.exports = {
         ],
       },
 
-      //字体
+      // Font
       {
         test: /\.(eot|ttf|woff|woff2)$/,
         exclude: /node_modules/,
@@ -176,7 +119,7 @@ module.exports = {
         ],
       },
 
-      //模板
+      // Pug template
       {
         test: /\.pug$/,
         exclude: /node_modules/,
@@ -190,34 +133,5 @@ module.exports = {
       names: ["bundle", "vendor"],
       minChunks: Infinity,
     }),
-
-    new ExtractTextPlugin({
-      filename: 'style/[name]-[hash:6].css',
-      disable: false,
-      allChunks: true,
-    }),
-
-    new LoaderOptionsPlugin({
-      options: {
-        context: '/',
-        postcss: [
-          autoprefixer({
-            browsers: [
-              'last 4 versions',
-              'ie >= 10',
-              'ie_mob >= 10',
-              'ff >= 30',
-              'chrome >= 34',
-              'safari >= 8',
-              'opera >= 23',
-              'ios >= 8',
-              'android >= 4.4',
-              'bb >= 10',
-            ],
-          }),
-        ],
-      },
-    }),
-
   ],
 };

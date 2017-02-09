@@ -1,15 +1,15 @@
-@import "../../static/sass/variables";
-@import "../../static/sass/utilities";
+@import "../theme/variables";
+@import "../theme/utilities";
 
 h1 {
   position: relative;
-  font-size: .36rem;
+  font-size: .3rem;
   font-weight: bold;
 
   span {
     position: absolute;
     bottom: .04rem;
-    font-size: $fontM;
+    font-size: $fontS;
     font-style: italic;
     padding-left: .04rem;
     font-weight: normal;
@@ -18,11 +18,12 @@ h1 {
 
 .lead {
   padding: $space 0;
+  text-align: center;
 }
 
 .gotoGithub {
   margin-top: $space * 2;
-  padding: $space;
+  padding: $space $space * 2;
   border: .01rem solid $fontColor;
   border-radius: $radius;
   font-size: $fontL;
@@ -35,7 +36,7 @@ h1 {
 
 .lastUpdated {
   font-size: $fontS;
-  padding: $space /2;
+  padding: $space;
   display: flex;
   @include flex-box-align(center, center);
 

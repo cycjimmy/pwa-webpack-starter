@@ -8,7 +8,7 @@ const
   , del = require('del')
   ;
 
-//清空icon
+// Clear the icon folder
 gulp.task('clean:icon', callback => {
   del(srcPaths.icons.to);
   return cache.clearAll(callback);

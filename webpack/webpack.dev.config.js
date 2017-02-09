@@ -3,8 +3,9 @@
   , webpackMerge = require('webpack-merge')
   , webpackBase = require("./webpack.base.js")
   , browserSyncConfig = require('./browserSync.config')
+  , styleLoadersConfig = require('./styleLoaders.config')()
 
-  //webpack插件
+  // Webpack Plugin
   , BrowserSyncPlugin = require('browser-sync-webpack-plugin')
   , HtmlWebpackPlugin = require('html-webpack-plugin')
   , DefinePlugin = require('webpack/lib/DefinePlugin')
@@ -13,8 +14,26 @@
 
 module.exports = webpackMerge(webpackBase, {
   devtool: 'eval-source-map',
+
   output: {
     path: path.resolve('./dist'),
+  },
+
+  module: {
+    rules: [
+      // Style
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          styleLoadersConfig.cssLoader,
+          styleLoadersConfig.sassLoader,
+        ]
+      },
+    ]
   },
 
   plugins: [

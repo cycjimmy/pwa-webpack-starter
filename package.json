@@ -1,6 +1,6 @@
 {
   "name": "gulp-temp",
-  "version": "0.5.6",
+  "version": "0.6.0",
   "description": "Gulp template starter: Webpack2 Sass Pug Babel",
   "main": "index.js",
   "scripts": {
@@ -42,6 +42,7 @@
     "browser-sync": "^2.18.7",
     "browser-sync-webpack-plugin": "^1.1.4",
     "clean-webpack-plugin": "^0.1.15",
+    "cross-env": "^3.1.4",
     "css-loader": "^0.26.1",
     "del": "^2.2.2",
     "extract-text-webpack-plugin": "beta",
@@ -61,7 +62,7 @@
     "pug-loader": "^2.3.0",
     "require-dir": "^0.3.1",
     "run-sequence": "^1.2.2",
-    "sass-loader": "^4.1.1",
+    "sass-loader": "^5.0.1",
     "style-loader": "^0.13.1",
     "uglify-js": "^2.7.5",
     "uglifyjs-webpack-plugin": "^0.1.3",
