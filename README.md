@@ -1,4 +1,4 @@
-# gulp-temp (a gulp template starter)
+# Gulp-temp (a gulp template starter)
 
 Personal front-end automation solutions for webpage.
 
@@ -34,7 +34,7 @@ gulp-temp
  └─...
 ```
 
-## task
+## Main Tasks
 ```shell
 # Run in development
 $ npm start
