@@ -1,7 +1,7 @@
 {
   "title": "Gulp-temp",
-  "version": "v0.6.2",
+  "version": "v0.6.3",
   "lead": "A gulp template starter for webpack2, es6/7, sass, css-modules, pug...",
   "repository": "https://github.com/cycjimmy/gulp-temp",
-  "lastUpdated": "2017-2-10"
+  "lastUpdated": "Feb. 10, 2017"
 }

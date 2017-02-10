@@ -130,7 +130,7 @@ module.exports = {
 
   plugins: [
     new CommonsChunkPlugin({
-      names: ["bundle", "vendor"],
+      names: ["main", "vendor"],
       minChunks: Infinity,
     }),
   ],
