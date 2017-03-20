@@ -1,7 +1,7 @@
 //-
    Created by cyc on 2017/2/8.
 
-mixin icon(url,className)
+mixin icon(svgUrl, svgId, className)
 
   - var addClass = '';
   if className
@@ -9,4 +9,4 @@ mixin icon(url,className)
 
   span.icon(class=addClass)
     svg(aria-hidden="true")
-      use(xlink:href=url)
+      use(xlink:href=svgUrl + '#' + svgId)

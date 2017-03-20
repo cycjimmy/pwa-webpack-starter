@@ -4,6 +4,12 @@
 
 const
   autoprefixer = require('autoprefixer')
+  , PRODUCTION = process.env.NODE_ENV === 'production'       // 生产模式
+  ;
+
+
+let
+  cssIdentifier = PRODUCTION ? '[hash:base64:10]' : '[path][name]__[local]'
   ;
 
 
@@ -14,7 +20,7 @@ module.exports = options => {
       options: {
         importLoaders: 2,
         modules: true,
-        localIdentName: '[name]__[local]_[hash:base64:6]',
+        localIdentName: cssIdentifier,
       }
     },
     sassLoader: {

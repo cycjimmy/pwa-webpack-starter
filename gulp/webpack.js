@@ -6,7 +6,7 @@ const
 
 
 gulp.task('pack:dev', shell.task([
-  'webpack --config webpack/webpack.dev.config.js --watch --color'
+  'cross-env NODE_ENV=development webpack --config webpack/webpack.dev.config.js --watch --color'
 ]));
 
 gulp.task('pack:build', shell.task([

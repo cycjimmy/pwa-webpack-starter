@@ -10,6 +10,9 @@ const
   , CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
   ;
 
+const DEVELOPMENT = process.env.NODE_ENV === 'development';
+const PRODUCTION = process.env.NODE_ENV === 'production';
+
 module.exports = {
   entry: {
     "vendor": [
@@ -20,8 +23,12 @@ module.exports = {
   },
 
   output: {
-    filename: "scripts/[name].bundle.[hash:6].js",
-    chunkFilename: 'scripts/[name].[chunkhash:6].chunk.js',
+    filename: PRODUCTION
+      ? 'scripts/[name].bundle.[hash:8].min.js'
+      : 'scripts/[name].bundle.[hash:4].js',
+    chunkFilename: PRODUCTION
+      ? 'scripts/[name].chunk.[chunkhash:8].min.js'
+      : 'scripts/[name].chunk.[chunkhash:4].js',
     //publicPath: '/'
   },
 
