@@ -8,7 +8,8 @@ const
 
   // Webpack Plugin
   , CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
-  ;
+  , DefinePlugin = require('webpack/lib/DefinePlugin')
+;
 
 const DEVELOPMENT = process.env.NODE_ENV === 'development';
 const PRODUCTION = process.env.NODE_ENV === 'production';
@@ -19,13 +20,14 @@ module.exports = {
       "iscroll",
       "fastclick",
     ],
-    "main": path.resolve('./app', 'main.js'),
+    "main": path.resolve('app', 'main.js'),
   },
 
   output: {
+    // path: 'dist',
     filename: PRODUCTION
-      ? 'scripts/[name].bundle.[hash:8].min.js'
-      : 'scripts/[name].bundle.[hash:4].js',
+      ? 'scripts/[name].bundle.[chunkhash:8].min.js'
+      : 'scripts/[name].bundle.[chunkhash:4].js',
     chunkFilename: PRODUCTION
       ? 'scripts/[name].chunk.[chunkhash:8].min.js'
       : 'scripts/[name].chunk.[chunkhash:4].js',
@@ -34,12 +36,13 @@ module.exports = {
 
   resolve: {
     modules: [
-      path.resolve('./app'),
-      path.resolve('./node_modules'),
+      path.resolve('app'),
+      path.resolve('node_modules'),
+      path.resolve('static'),
     ],
     'alias': {
-      'iscroll': path.resolve('./node_modules', 'iscroll', 'build', 'iscroll-lite.js'),
-      'fastclick': path.resolve('./node_modules', 'fastclick', 'lib', 'fastclick.js'),
+      'iscroll': path.resolve('node_modules', 'iscroll', 'build', 'iscroll-lite.js'),
+      'fastclick': path.resolve('node_modules', 'fastclick', 'lib', 'fastclick.js'),
     },
     'extensions': ['.js']
   },
@@ -49,6 +52,7 @@ module.exports = {
       // Scripts
       {
         test: /\.js$/,
+        include: path.resolve('app'),
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
@@ -60,12 +64,16 @@ module.exports = {
           path.resolve('node_modules'),
           path.resolve('static', 'images', 'icons'),
         ],
+        include: [
+          path.resolve('app'),
+          path.resolve('static'),
+        ],
         use: [
           {
             loader: 'url-loader',
             options: {
               limit: 2048,
-              name: 'images/[name]-[hash:6].[ext]',
+              name: 'images/[name].[hash:6].[ext]',
             }
           },
           {
@@ -105,7 +113,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'images/icons/[name]-[hash:6].[ext]',
+              name: 'images/icons/[name].[hash:6].[ext]',
             }
           }
         ],
@@ -120,7 +128,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8192,
-              name: 'fonts/[name]-[hash:6].[ext]',
+              name: 'fonts/[name].[hash:6].[ext]',
             }
           }
         ],
@@ -129,6 +137,10 @@ module.exports = {
       // Pug template
       {
         test: /\.pug$/,
+        include: [
+          path.resolve('app'),
+          path.resolve('static'),
+        ],
         exclude: /node_modules/,
         loader: 'pug-loader',
       },
@@ -139,6 +151,11 @@ module.exports = {
     new CommonsChunkPlugin({
       names: ["main", "vendor"],
       minChunks: Infinity,
+    }),
+
+    new DefinePlugin({
+      DEVELOPMENT: JSON.stringify(DEVELOPMENT),
+      PRODUCTION: JSON.stringify(PRODUCTION),
     }),
   ],
 };
