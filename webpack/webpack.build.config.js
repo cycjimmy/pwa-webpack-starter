@@ -14,7 +14,10 @@ const
   , CleanWebpackPlugin = require('clean-webpack-plugin')
   , LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
   , ExtractTextPlugin = require('extract-text-webpack-plugin')
-  ;
+  , InlineManifestPlugin = require('inline-manifest-webpack-plugin')
+  , ManifestPlugin = require('webpack-manifest-plugin')
+  , ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
+;
 
 
 module.exports = webpackMerge(webpackBase, {
@@ -51,6 +54,7 @@ module.exports = webpackMerge(webpackBase, {
       template: path.resolve('./static', 'view', 'index.pug'),   // 模板位置
       //filename: '../index.html',
       favicon: path.resolve('./static', 'favicon.ico'),
+      chunks: ['manifest', 'main', 'vendor'],
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -63,6 +67,16 @@ module.exports = webpackMerge(webpackBase, {
         minifyCSS: true,
         minifyURLs: true,
       },
+    }),
+
+    // new ManifestPlugin(),
+    // new ChunkManifestPlugin({
+    //   filename: "chunk-manifest.json",
+    //   manifestVariable: "webpackManifest"
+    // }),
+
+    new InlineManifestPlugin({
+      name: 'webpackManifest',
     }),
 
     new CleanWebpackPlugin(['build'], {
@@ -100,7 +114,7 @@ module.exports = webpackMerge(webpackBase, {
     }),
 
     new ExtractTextPlugin({
-      filename: 'style/[name]-[hash:6].css',
+      filename: 'style/[name].[chunkhash:8].min.css',
       disable: false,
       allChunks: true,
     }),
