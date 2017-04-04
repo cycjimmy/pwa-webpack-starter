@@ -1,12 +1,12 @@
 doctype html
-html(lang='zh-cn')
+html(lang='zh-cn' manifest='./manifest.appcache')
   head
     title gulp-temp
-    //-link(rel="manifest" href="./manifest.json")
+    //link(rel="manifest" href="./manifest.json")
     //-link(rel="manifest" href="./chunk-manifest.json")
     include includes/meta.pug
   body
     .main-screen
       include includes/mainScreen.pug
 
-    !=htmlWebpackPlugin.files.webpackManifest
+    //!=htmlWebpackPlugin.files.webpackManifest

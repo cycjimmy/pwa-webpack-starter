@@ -16,7 +16,10 @@ const
   , ExtractTextPlugin = require('extract-text-webpack-plugin')
   , InlineManifestPlugin = require('inline-manifest-webpack-plugin')
   , ManifestPlugin = require('webpack-manifest-plugin')
+  , WebpackChunkHash = require("webpack-chunk-hash")
   , ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
+  , AppCachePlugin = require('appcache-webpack-plugin')
+  , SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 ;
 
 
@@ -54,7 +57,7 @@ module.exports = webpackMerge(webpackBase, {
       template: path.resolve('./static', 'view', 'index.pug'),   // 模板位置
       //filename: '../index.html',
       favicon: path.resolve('./static', 'favicon.ico'),
-      chunks: ['manifest', 'main', 'vendor'],
+      // chunks: ['manifest', 'main', 'vendor'],
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -69,15 +72,43 @@ module.exports = webpackMerge(webpackBase, {
       },
     }),
 
+    new AppCachePlugin({
+      network: null,  // No network access allowed!
+      fallback: [],
+      settings: ['prefer-online'],
+      exclude: ['index.html'],  // Exclude file.txt and all .js files
+      output: 'manifest.appcache'
+    }),
+
+    new SWPrecacheWebpackPlugin(
+      {
+        cacheId: 'gulp-temp',
+        filename: 'service-worker.js',
+        verbose: true,
+      }
+    ),
+
+    // new webpack.HashedModuleIdsPlugin(),
+    // new WebpackChunkHash(),
+
+    // function() {
+    //   this.plugin('done', (stats)=> {
+    //     require('fs').writeFileSync(
+    //       path.resolve('./build', 'manifest.json'),
+    //       // path.join(__dirname, "build", "manifest.json"),
+    //       JSON.stringify(stats.toJson()));
+    //   });
+    // },
+
     // new ManifestPlugin(),
     // new ChunkManifestPlugin({
-    //   filename: "chunk-manifest.json",
+    //   filename: "manifest.json",
     //   manifestVariable: "webpackManifest"
     // }),
-
-    new InlineManifestPlugin({
-      name: 'webpackManifest',
-    }),
+    //
+    // new InlineManifestPlugin({
+    //   name: 'webpackManifest',
+    // }),
 
     new CleanWebpackPlugin(['build'], {
       root: path.resolve('./'),
