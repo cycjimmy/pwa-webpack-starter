@@ -14,12 +14,13 @@ const
   , CleanWebpackPlugin = require('clean-webpack-plugin')
   , LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
   , ExtractTextPlugin = require('extract-text-webpack-plugin')
-  , InlineManifestPlugin = require('inline-manifest-webpack-plugin')
-  , ManifestPlugin = require('webpack-manifest-plugin')
+  // , InlineManifestPlugin = require('inline-manifest-webpack-plugin')
+  // , ManifestPlugin = require('webpack-manifest-plugin')
   , WebpackChunkHash = require("webpack-chunk-hash")
-  , ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
+  // , ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
   , AppCachePlugin = require('appcache-webpack-plugin')
   , SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+  , OfflinePlugin = require('offline-plugin')
 ;
 
 
@@ -72,24 +73,17 @@ module.exports = webpackMerge(webpackBase, {
       },
     }),
 
-    new AppCachePlugin({
-      network: null,  // No network access allowed!
-      fallback: [],
-      settings: ['prefer-online'],
-      exclude: ['index.html'],  // Exclude file.txt and all .js files
-      output: 'manifest.appcache'
-    }),
 
-    new SWPrecacheWebpackPlugin(
-      {
-        cacheId: 'gulp-temp',
-        filename: 'service-worker.js',
-        verbose: true,
-      }
-    ),
+    // new SWPrecacheWebpackPlugin(
+    //   {
+    //     cacheId: 'gulp-temp',
+    //     filename: 'service-worker.js',
+    //     verbose: true,
+    //   }
+    // ),
 
-    // new webpack.HashedModuleIdsPlugin(),
-    // new WebpackChunkHash(),
+    new webpack.HashedModuleIdsPlugin(),
+    new WebpackChunkHash(),
 
     // function() {
     //   this.plugin('done', (stats)=> {
@@ -108,6 +102,44 @@ module.exports = webpackMerge(webpackBase, {
     //
     // new InlineManifestPlugin({
     //   name: 'webpackManifest',
+    // }),
+
+    new OfflinePlugin({
+      safeToUseOptionalCaches: true,
+
+      caches: {
+        main: [],
+        additional: [':externals:'],
+        optional: [':rest:'],
+        excludes: [
+          '**/.*',
+          '**/*.map',
+          'index.html',
+        ],
+      },
+
+      ServiceWorker: {
+        output: 'service-worker.js',
+        cacheName: 'gulp-temp',
+        events: true,
+        minify: true,
+      },
+      AppCache: {
+        caches: ['main', 'additional', 'optional'],
+        // directory: './',
+        NETWORK: null,
+        events: true,
+      }
+    }),
+
+
+    // new AppCachePlugin({
+    //   network: null,  // No network access allowed!
+    //   fallback: [],
+    //   settings: ['prefer-online'],
+    //   exclude: ['index.html', 'service-worker.js'],  // Exclude file.txt and all .js files
+    //   // output: path.resolve('./build', 'appcache', 'manifest.appcache'),
+    //   output: 'manifest.appcache',
     // }),
 
     new CleanWebpackPlugin(['build'], {
@@ -163,7 +195,7 @@ module.exports = webpackMerge(webpackBase, {
       },
       port: 4000,
       ui: {
-        port: 4001
+        port: 4001,
       },
       logLevel: "warn",
     }), {
