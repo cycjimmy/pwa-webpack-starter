@@ -63,6 +63,7 @@ module.exports = {
         exclude: [
           path.resolve('node_modules'),
           path.resolve('static', 'images', 'icons'),
+          path.resolve('static', 'images', 'logo'),
         ],
         include: [
           path.resolve('app'),
@@ -119,6 +120,28 @@ module.exports = {
         ],
       },
 
+
+      // logo
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        exclude: [
+          path.resolve('node_modules'),
+        ],
+        include: [
+          path.resolve('static', 'images', 'logo'),
+        ],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/logo/[name].[hash:6].[ext]',
+            }
+          },
+        ],
+      },
+
+
+
       // Font
       {
         test: /\.(eot|ttf|woff|woff2)$/,
@@ -143,6 +166,26 @@ module.exports = {
         ],
         exclude: /node_modules/,
         loader: 'pug-loader',
+      },
+
+      // Web App Manifest
+      {
+        test: /manifest.json$/,
+        include: [
+          path.resolve('static'),
+        ],
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'manifest.json',
+            }
+          },
+          {
+            loader: 'web-app-manifest-loader',
+          },
+        ],
       },
     ]
   },

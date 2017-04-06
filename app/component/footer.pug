@@ -3,6 +3,7 @@
    底部区块
    indexIcons: 图标文件
    style: 样式文件
+   sEnvironment: 环境
 
 
 include ../share/icon.mixin.pug
@@ -10,4 +11,4 @@ include ../share/icon.mixin.pug
 +icon(indexIcons, 'dev', style.foot)
 p
   | Environment:&nbsp;
-  span#environment(class=style.environment) Non-development
+  span#environment(class=style.environment) #{sEnvironment}

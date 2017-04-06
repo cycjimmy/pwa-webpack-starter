@@ -26,26 +26,6 @@ export default () => {
     //加载底部
     new FooterComponent().load(),
 
-  ])
-    .then(() => {
-      return Promise.all([
-        new xhrData({
-          //type: 'GET',
-          funcName: 'getData',
-          data: "a getData require",
-          dataType: 'json',
-        })
-          .then(data => {
-            //console.log("收到数据" + data);
-            let
-              eEnvironment = document.querySelector('#environment')
-            ;
-            eEnvironment.textContent = data.environment;
-          }, err => {
-            console.error(err);
-          }),
-
-      ]);
-    });
+  ]);
 };
 

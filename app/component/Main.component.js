@@ -7,6 +7,7 @@ import Templates from '../share/Templates';
 import * as main from './main.pug';
 import * as mainStyle from './main.scss';
 import * as indexIcons from '../../static/images/icons/index.svg';
+import * as logoSvg from '../../static/images/logo.svg';
 import * as info from '../info.json';
 
 
@@ -19,7 +20,7 @@ export default class MainSctComponent {
     //新建一个容器oPopup
     let
       eContext = this.context
-      ;
+    ;
 
     //加载流程
     return new Promise(resolve => {
@@ -27,7 +28,12 @@ export default class MainSctComponent {
         style = mainStyle;
 
       //将insidePageFrame放入insidePage
-      new Templates(main, eContext, {info, style, indexIcons}).load();
+      new Templates(main, eContext, {
+        info,
+        style,
+        indexIcons,
+        logoSvg,
+      }).load();
 
       setTimeout(() => {
         resolve(); //加载完传出状态

@@ -73,54 +73,34 @@ module.exports = webpackMerge(webpackBase, {
       },
     }),
 
-
-    // new SWPrecacheWebpackPlugin(
-    //   {
-    //     cacheId: 'gulp-temp',
-    //     filename: 'service-worker.js',
-    //     verbose: true,
-    //   }
-    // ),
-
     new webpack.HashedModuleIdsPlugin(),
     new WebpackChunkHash(),
-
-    // function() {
-    //   this.plugin('done', (stats)=> {
-    //     require('fs').writeFileSync(
-    //       path.resolve('./build', 'manifest.json'),
-    //       // path.join(__dirname, "build", "manifest.json"),
-    //       JSON.stringify(stats.toJson()));
-    //   });
-    // },
-
-    // new ManifestPlugin(),
-    // new ChunkManifestPlugin({
-    //   filename: "manifest.json",
-    //   manifestVariable: "webpackManifest"
-    // }),
-    //
-    // new InlineManifestPlugin({
-    //   name: 'webpackManifest',
-    // }),
 
     new OfflinePlugin({
       safeToUseOptionalCaches: true,
 
+      version: '[hash]',
+      updateStrategy: 'changed',
+      autoUpdate: true,
+
       caches: {
-        main: [],
+        main: [
+          'main.*.min.css',
+          'main.*.min.js',
+          'vendor.*.min.js',
+        ],
         additional: [':externals:'],
         optional: [':rest:'],
-        excludes: [
-          '**/.*',
-          '**/*.map',
-          'index.html',
-        ],
       },
+
+      excludes: [
+        '/',
+      ],
 
       ServiceWorker: {
         output: 'service-worker.js',
         cacheName: 'gulp-temp',
+        navigateFallbackURL: '/',
         events: true,
         minify: true,
       },
@@ -129,18 +109,10 @@ module.exports = webpackMerge(webpackBase, {
         // directory: './',
         NETWORK: null,
         events: true,
-      }
+        FALLBACK: {'/': '/'},
+        includeCrossOrigin: true,
+      },
     }),
-
-
-    // new AppCachePlugin({
-    //   network: null,  // No network access allowed!
-    //   fallback: [],
-    //   settings: ['prefer-online'],
-    //   exclude: ['index.html', 'service-worker.js'],  // Exclude file.txt and all .js files
-    //   // output: path.resolve('./build', 'appcache', 'manifest.appcache'),
-    //   output: 'manifest.appcache',
-    // }),
 
     new CleanWebpackPlugin(['build'], {
       root: path.resolve('./'),

@@ -16,6 +16,14 @@ h1 {
   }
 }
 
+.logo {
+  $picH: 1rem;
+
+  height: $picH;
+  width: $picH;
+  padding: $picH / 5;
+}
+
 .lead {
   padding: $space 0;
   text-align: center;

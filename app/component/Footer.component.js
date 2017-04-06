@@ -3,7 +3,6 @@
  */
 
 
-
 import Templates from '../share/Templates';
 import * as footer from './footer.pug';
 import * as footerStyle from './footer.scss';
@@ -17,14 +16,29 @@ export default class FooterComponent {
   load() {
     let
       eContext = this.context
-      ;
+      , sEnvironment
+    ;
+
+    // 开发环境
+    if (DEVELOPMENT) {
+      sEnvironment = 'Development';
+    }
+
+    // 生产环境
+    if (PRODUCTION) {
+      sEnvironment = 'Production';
+    }
 
     //加载流程
     return new Promise(resolve => {
       let
         style = footerStyle;
 
-      new Templates(footer, eContext, {style,indexIcons}).load();
+      new Templates(footer, eContext, {
+        style,
+        indexIcons,
+        sEnvironment,
+      }).load();
 
       setTimeout(() => {
         resolve(); //加载完传出状态

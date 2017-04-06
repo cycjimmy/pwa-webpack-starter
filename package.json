@@ -1,6 +1,6 @@
 {
   "name": "gulp-temp",
-  "version": "0.7.0-alpha.3",
+  "version": "0.7.0-alpha.4",
   "description": "A gulp template starter for webpack2, es6/7, sass, css-modules, pug...",
   "main": "index.js",
   "scripts": {
@@ -74,6 +74,7 @@
     "uglify-js": "^2.8.14",
     "uglifyjs-webpack-plugin": "^0.1.5",
     "url-loader": "^0.5.8",
+    "web-app-manifest-loader": "^0.1.1",
     "webpack": "^2.3.1",
     "webpack-chunk-hash": "^0.4.0",
     "webpack-manifest-plugin": "^1.1.0",

@@ -3,10 +3,12 @@
    中间区块
    info：信息json对象
    indexIcons: 图标文件
+   logoSvg: logo文件
    style: 样式文件
 
 include ../share/icon.mixin.pug
 
+img(class=style.logo src=logoSvg)
 h1
   | #{info.title}
   span #{info.version}
@@ -18,4 +20,3 @@ a#gotoGithub(class=style.gotoGithub, href=info.repository) View on Github
 p(class=style.lastUpdated)
   +icon(indexIcons, 'update')
   | Last Updated: #{info.lastUpdated}
-

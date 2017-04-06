@@ -1,0 +1,35 @@
+{
+  "lang": "zh-cn",
+  "name": "gulp-temp",
+  "description": "A gulp template starter for webpack2, es6/7, sass, css-modules, pug...",
+  "icons": [{
+    "src": "./images/logo/logo128.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  }, {
+    "src": "./images/logo/logo144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "./images/logo/logo152.png",
+    "sizes": "152x152",
+    "type": "image/png"
+  }, {
+    "src": "./images/logo/logo192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }, {
+    "src": "./images/logo/logo256.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }],
+  "short_name": "gulp-temp",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a4f56",
+  "theme_color": "#0a5644",
+  "serviceworker": {
+    "src": "./service-worker.js"
+  }
+}
