@@ -1,0 +1,11 @@
+CACHE MANIFEST
+#ver:2017-4-6 12:35:24
+#plugin:4.6.2
+
+CACHE:
+../images/icons/index.03a72a.svg
+../manifest.json
+../scripts/vendor.bundle.fd7eb847.min.js
+../scripts/main.bundle.725798fd.min.js
+../style/main.725798fd.min.css
+../favicon.ico
