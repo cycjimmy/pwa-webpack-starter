@@ -1,10 +1,15 @@
 CACHE MANIFEST
-#ver:2017-4-6 12:35:24
+#ver:2017-4-6 12:36:56
 #plugin:4.6.2
 
 CACHE:
-../images/icons/index.03a72a.svg
 ../manifest.json
+../images/logo/logo256.8887a3.png
+../images/logo/logo144.3d7433.png
+../images/logo/logo128.8d9423.png
+../images/icons/index.03a72a.svg
+../images/logo/logo152.424310.png
+../images/logo/logo192.98b882.png
 ../scripts/vendor.bundle.fd7eb847.min.js
 ../scripts/main.bundle.725798fd.min.js
 ../style/main.725798fd.min.css
