@@ -1,9 +1,10 @@
 CACHE MANIFEST
-#ver:239943f980a5d19daf348978230fcae324c305c9
+#ver:d9d517a8d7fb36284e6ac3f65c561ce772253f37
 #plugin:4.6.2
 
 CACHE:
 ../manifest.json
+../images/logo/logo.a6d918.svg
 ../images/logo/logo256.8887a3.png
 ../images/logo/logo144.3d7433.png
 ../images/logo/logo128.8d9423.png
@@ -11,8 +12,8 @@ CACHE:
 ../images/logo/logo152.424310.png
 ../images/logo/logo192.98b882.png
 ../scripts/vendor.bundle.fd7eb847.min.js
-../scripts/main.bundle.3958c927.min.js
-../style/main.3958c927.min.css
+../scripts/main.bundle.72b258a4.min.js
+../style/main.72b258a4.min.css
 ../favicon.ico
 ../
 
