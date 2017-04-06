@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:2017-4-6 12:36:56
+#ver:239943f980a5d19daf348978230fcae324c305c9
 #plugin:4.6.2
 
 CACHE:
@@ -11,6 +11,12 @@ CACHE:
 ../images/logo/logo152.424310.png
 ../images/logo/logo192.98b882.png
 ../scripts/vendor.bundle.fd7eb847.min.js
-../scripts/main.bundle.725798fd.min.js
-../style/main.725798fd.min.css
+../scripts/main.bundle.3958c927.min.js
+../style/main.3958c927.min.css
 ../favicon.ico
+../
+
+
+
+FALLBACK:
+/ /
