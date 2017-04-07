@@ -1,6 +1,6 @@
 # Gulp-temp (a gulp template starter)
 
-Personal front-end automation solutions for webpage.
+Personal front-end automation solutions for webApp.
 
 ## Installation
 ```shell
@@ -22,12 +22,14 @@ gulp-temp
  │   └─webSocket/
  ├─static/            # Static folder
  │   ├─icons/         # Svg icons entry folder (raw)
+ │   ├─logos/         # Logos for Manifest
  │   ├─images/        # Pictures folder
  │   │   ├──icons/    # Svg icons folder (processed)
  │   │   └──...       # Other pictures
  │   ├─view/          # Static pug template folder
  │   │   └──... 
- │   └─favicon.ico    # Icon file
+ │   ├─favicon.ico    # Icon file
+ │   └─manifest.json  # Manifest file
  ├─webpack/           # Webpack configuration folder
  │   └─...            # Webpack configuration files
  ├─gulpfile.js        # Gulp file entry

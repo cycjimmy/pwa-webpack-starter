@@ -1,7 +1,7 @@
 @import 'variables';
 @import 'utilities';
 /*---------------------------
- * 样式重置
+ * reset style
  *---------------------------*/
 @import "reset";
 
@@ -17,8 +17,9 @@ body {
   background-color: $bgc;
 }
 
-:global{
-  .icon { //图标用样式
+:global {
+  // style for svg icons
+  .icon {
     position: relative;
     display: inline-block;
     overflow: hidden;
@@ -31,10 +32,8 @@ body {
   }
 }
 
-
-
 /*---------------------------
- * 主体框架
+ * Main Frame
  *---------------------------*/
 :global {
   .main-screen {
@@ -46,12 +45,12 @@ body {
     display: flex;
     flex-direction: column;
 
-    //头部
+    // header
     > header {
       height: 8vh;
     }
 
-    //中间
+    // middle
     > main {
       flex: 1;
       display: flex;
@@ -60,7 +59,7 @@ body {
       padding: $space * 2;
     }
 
-    //底部
+    // footer
     > footer {
       height: 8vh;
       display: flex;

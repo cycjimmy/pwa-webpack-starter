@@ -63,7 +63,7 @@ module.exports = {
         exclude: [
           path.resolve('node_modules'),
           path.resolve('static', 'images', 'icons'),
-          path.resolve('static', 'images', 'logo'),
+          path.resolve('static', 'images', 'logos'),
         ],
         include: [
           path.resolve('app'),
@@ -120,7 +120,6 @@ module.exports = {
         ],
       },
 
-
       // logo
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
@@ -128,19 +127,17 @@ module.exports = {
           path.resolve('node_modules'),
         ],
         include: [
-          path.resolve('static', 'images', 'logo'),
+          path.resolve('static', 'logos'),
         ],
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: 'images/logo/[name].[hash:6].[ext]',
+              name: 'images/logos/[name].[hash:6].[ext]',
             }
           },
         ],
       },
-
-
 
       // Font
       {
@@ -192,7 +189,6 @@ module.exports = {
 
   plugins: [
     new CommonsChunkPlugin({
-      // names: ['main', 'vendor', 'manifest'],
       names: ['main'],
       minChunks: Infinity,
     }),

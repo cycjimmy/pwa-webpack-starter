@@ -1,29 +1,29 @@
 /**
  * Created by cyc on 2017/2/7.
  *
- * 网页初始化
+ *  web init
  */
 
 
 import {getUrlRelativeDir} from './awesome.func';
-import xhrData from './xhrData.func';
+// import xhrData from './xhrData.func';
 
-//组件
+// component
 import FooterComponent from '../component/Footer.component';
 import MainComponent from '../component/Main.component';
 
 export default () => {
 
   return Promise.all([
-    //设置相对路径
+    // set relativeDir
     (() => {
       sessionStorage.setItem('relativeDir', JSON.stringify(getUrlRelativeDir()) || '');
     })(),
 
-    //加载主体
+    // load main
     new MainComponent().load(),
 
-    //加载底部
+    // load footer
     new FooterComponent().load(),
 
   ]);

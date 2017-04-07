@@ -10,7 +10,7 @@ const
 module.exports = options => {
   return Object.assign({
     server: {
-      //https: true,
+      // https: true,
     },
     ghostMode: false,
     logLevel: "debug",

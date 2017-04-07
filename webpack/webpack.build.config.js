@@ -14,12 +14,7 @@ const
   , CleanWebpackPlugin = require('clean-webpack-plugin')
   , LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
   , ExtractTextPlugin = require('extract-text-webpack-plugin')
-  // , InlineManifestPlugin = require('inline-manifest-webpack-plugin')
-  // , ManifestPlugin = require('webpack-manifest-plugin')
   , WebpackChunkHash = require("webpack-chunk-hash")
-  // , ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')
-  , AppCachePlugin = require('appcache-webpack-plugin')
-  , SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
   , OfflinePlugin = require('offline-plugin')
 ;
 
@@ -75,7 +70,6 @@ module.exports = webpackMerge(webpackBase, {
 
     new webpack.HashedModuleIdsPlugin(),
     new WebpackChunkHash(),
-
     new OfflinePlugin({
       safeToUseOptionalCaches: true,
 
@@ -164,6 +158,7 @@ module.exports = webpackMerge(webpackBase, {
     new BrowserSyncPlugin(browserSyncConfig({
       server: {
         baseDir: 'build',
+        // https: true,
       },
       port: 4000,
       ui: {

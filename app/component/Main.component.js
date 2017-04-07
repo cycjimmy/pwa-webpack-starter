@@ -7,7 +7,7 @@ import Templates from '../share/Templates';
 import * as main from './main.pug';
 import * as mainStyle from './main.scss';
 import * as indexIcons from '../../static/images/icons/index.svg';
-import * as logoSvg from '../../static/images/logo.svg';
+import * as logoSvg from '../../static/images/myLogo.svg';
 import * as info from '../info.json';
 
 
