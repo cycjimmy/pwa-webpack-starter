@@ -12,12 +12,11 @@
 
 import {isString} from './awesome.func';
 
-
 export default class QueryAll {
-
   constructor(selectorOrEls, context = document) {
-
-    let elements = null;
+    let
+      elements = null
+    ;
 
     if (isString(selectorOrEls)) {
       elements = context.querySelectorAll(selectorOrEls);
@@ -30,15 +29,21 @@ export default class QueryAll {
     } else {
       this.nodeList = Array.prototype.slice.call(elements);
     }
-
-
-  }
+  };
 
   //事件绑定
   on(eventType, fn) {
-    this.nodeList.map((el) => {
-      el.addEventListener(eventType, fn);
+    let
+      aEvents = eventType.split(' ')
+    ;
+
+    this.nodeList.map(el => {
+      for (let event of aEvents) {
+        el.addEventListener(event, fn);
+      }
     });
+
+    return this;
   };
 
 
@@ -51,12 +56,13 @@ export default class QueryAll {
         el.className += ' ' + className;
       }
     });
+
+    return this;
   };
 
   //删除样式
   removeClass(className) {
     this.nodeList.map((el) => {
-
       if (el.classList) {
         el.classList.remove(className);
       } else {
@@ -64,20 +70,19 @@ export default class QueryAll {
       }
     });
 
+    return this;
   };
 
   //是否存在样式
   hasClass(className) {
     this.nodeList.map((el) => {
-
       if (el.classList) {
         el.classList.contains(className);
       } else {
         new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
       }
-
     });
+
+    return this;
   };
-
 };
-

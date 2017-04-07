@@ -1,6 +1,6 @@
 {
   "name": "gulp-temp",
-  "version": "0.7.0-beta.1",
+  "version": "0.7.0-beta.2",
   "description": "A gulp template starter for webpack2, es6/7, sass, css-modules, pug...",
   "main": "index.js",
   "scripts": {

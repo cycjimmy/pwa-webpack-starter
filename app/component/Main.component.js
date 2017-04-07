@@ -10,6 +10,9 @@ import * as indexIcons from '../../static/images/icons/index.svg';
 import * as logoSvg from '../../static/images/myLogo.svg';
 import * as info from '../info.json';
 
+// service
+import MainService from './Main.service';
+
 
 export default class MainSctComponent {
   constructor() {
@@ -22,10 +25,11 @@ export default class MainSctComponent {
       eContext = this.context
     ;
 
-    //加载流程
+    // load flow
     return new Promise(resolve => {
       let
-        style = mainStyle;
+        style = mainStyle
+      ;
 
       //将insidePageFrame放入insidePage
       new Templates(main, eContext, {
@@ -36,8 +40,20 @@ export default class MainSctComponent {
       }).load();
 
       setTimeout(() => {
-        resolve(); //加载完传出状态
+        resolve();
       }, 0);
+    })
+      .then(()=>{
+      return new Promise(resolve=>{
+
+        // load service
+        new MainService(eContext).load();
+
+
+        setTimeout(() => {
+          resolve();
+        }, 0);
+      });
     });
 
   };
