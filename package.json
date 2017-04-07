@@ -1,6 +1,6 @@
 {
   "name": "gulp-temp",
-  "version": "0.7.0-beta.2",
+  "version": "0.7.1",
   "description": "A gulp template starter for webpack2, es6/7, sass, css-modules, pug...",
   "main": "index.js",
   "scripts": {
@@ -37,6 +37,7 @@
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-stage-3": "^6.22.0",
@@ -58,6 +59,7 @@
     "html-webpack-plugin": "^2.28.0",
     "image-webpack-loader": "^3.2.0",
     "merge-stream": "^1.0.1",
+    "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.5.1",
     "offline-plugin": "^4.6.2",
     "postcss-loader": "^1.3.3",

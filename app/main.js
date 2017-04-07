@@ -7,15 +7,32 @@ import '../static/manifest.json';
 import FastClick from 'fastclick';
 import webInitialize from './share/webInitialize.afunc';
 
-import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 
-
+// offline-plugin
 if (PRODUCTION) {
-  OfflinePluginRuntime.install({
-    onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
-    onUpdated: () => window.swUpdate = true,
-  });
+  System.import('offline-plugin/runtime')
+    .then(OfflinePluginRuntime => {
+      OfflinePluginRuntime.install({
+        onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
+        onUpdated: () => window.swUpdate = true,
+      });
+    });
 }
+
+// mockJs
+if (!PRODUCTION) {
+
+  import('mockjs').then(Mock => {
+    console.log(Mock);
+
+  });
+  // System.import('mockjs')
+  //   .then(Mock => {
+  //     console.log(Mock);
+  //
+  //   });
+}
+
 
 // init
 document.addEventListener('DOMContentLoaded', () => {
