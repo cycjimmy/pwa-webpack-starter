@@ -6,7 +6,7 @@
 
 
 import {getUrlRelativeDir} from './awesome.func';
-// import xhrData from './xhrData.func';
+import xhrData from './xhrData.func';
 
 // component
 import FooterComponent from '../component/Footer.component';
@@ -25,7 +25,18 @@ export default () => {
 
     // load footer
     new FooterComponent().load(),
-
-  ]);
+  ])
+    .then(() => {
+      return new xhrData({
+        //type: 'GET',
+        funcName: 'getData',
+        data: "a getData require",
+        dataType: 'json',
+      });
+    })
+    .then(data => {
+      console.log("收到数据", data);
+    })
+    .catch(err => console.error('Failed to init', err));
 };
 

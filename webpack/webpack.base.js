@@ -11,8 +11,11 @@ const
   , DefinePlugin = require('webpack/lib/DefinePlugin')
 ;
 
-const DEVELOPMENT = process.env.NODE_ENV === 'development';
-const PRODUCTION = process.env.NODE_ENV === 'production';
+const
+  DEVELOPMENT = process.env.NODE_ENV === 'development'    // 开发模式
+  , PRODUCTION = process.env.NODE_ENV === 'production'    // 生产模式
+  , PRODUCTION_TEST_SERVER = process.env.NODE_ENV === 'production_test_server'    // 用测试服务器预览生产模式
+;
 
 module.exports = {
   entry: {
@@ -25,12 +28,12 @@ module.exports = {
 
   output: {
     // path: 'dist',
-    filename: PRODUCTION
-      ? 'scripts/[name].bundle.[chunkhash:8].min.js'
-      : 'scripts/[name].bundle.[chunkhash:4].js',
-    chunkFilename: PRODUCTION
-      ? 'scripts/[name].chunk.[chunkhash:8].min.js'
-      : 'scripts/[name].chunk.[chunkhash:4].js',
+    filename: DEVELOPMENT
+      ? 'scripts/[name].bundle.[chunkhash:4].min.js'
+      : 'scripts/[name].bundle.[chunkhash:8].js',
+    chunkFilename: DEVELOPMENT
+      ? 'scripts/[name].chunk.[chunkhash:4].min.js'
+      : 'scripts/[name].chunk.[chunkhash:8].js',
     //publicPath: '/'
   },
 
@@ -196,6 +199,8 @@ module.exports = {
     new DefinePlugin({
       DEVELOPMENT: JSON.stringify(DEVELOPMENT),
       PRODUCTION: JSON.stringify(PRODUCTION),
+      PRODUCTION_TEST_SERVER: JSON.stringify(PRODUCTION_TEST_SERVER),
+      TEST_SERVER_ADDRESS: '',
     }),
   ],
 };

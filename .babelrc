@@ -1,22 +1,14 @@
 {
   "presets": [
     [
-      "es2015",
+      "env",
       {
         "modules": false
       }
-    ],
-    "stage-3"
+    ]
   ],
   "plugins": [
-    "syntax-dynamic-import",
-    [
-      "transform-runtime",
-      {
-        "polyfill": false,
-        "regenerator": true
-      }
-    ]
+    "syntax-dynamic-import"
   ],
   "ignore": [
     "node_modules"
