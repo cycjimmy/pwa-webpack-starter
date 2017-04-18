@@ -8,16 +8,28 @@ import FastClick from 'fastclick';
 import webInitialize from './share/webInitialize.afunc';
 
 // offline-plugin runtime
-import('offline-plugin/runtime')
-  .then(OfflinePluginRuntime => {
-    if (!DEVELOPMENT) {
-      OfflinePluginRuntime.install({
-        onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
-        onUpdated: () => window.swUpdate = true,
-      });
-    }
-  })
-  .catch(err => console.error('Failed to load OfflinePluginRuntime', err));
+import OfflinePluginRuntime from 'offline-plugin/runtime';
+
+if (!DEVELOPMENT) {
+  OfflinePluginRuntime.install({
+    onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
+    onUpdated: () => window.swUpdate = true,
+  });
+}
+
+if(DEVELOPMENT){
+  console.log('Development Mode');
+}
+if(PRODUCTION){
+  console.log('Production Mode');
+}
+
+// contextMenu preventDefault
+document.addEventListener('contextmenu', e => {
+  window.event.returnValue = false;
+  e.preventDefault();
+  return false;
+});
 
 // web page init
 document.addEventListener('DOMContentLoaded', () => {

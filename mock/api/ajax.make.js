@@ -19,6 +19,12 @@ module.exports = ({
 
     return (req, res, next) => {
 
+      let remoteAddress = req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress
+      ;
+
       //设置响应头文件
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Content-Type", "application/json;charset=UTF-8");
@@ -30,9 +36,9 @@ module.exports = ({
         console.log(
           apiName + ' Receive a require' + '\n' +
           apiName + ' -----------------' + '\n' +
-          //apiName + ' Url:' + req.url + '\n' +
-          apiName + ' Method:' + req.method + '\n' +
-          apiName + ' Data:' + e + '\n'
+          apiName + ' Method: ' + req.method + '\n' +
+          apiName + ' RemoteAddress: ' + remoteAddress + '\n' +
+          apiName + ' Data: ' + e + '\n'
         );
 
         //延迟执行
