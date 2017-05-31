@@ -29,11 +29,11 @@ module.exports = {
   output: {
     // path: 'dist',
     filename: DEVELOPMENT
-      ? 'scripts/[name].bundle.[chunkhash:4].min.js'
-      : 'scripts/[name].bundle.[chunkhash:8].js',
+      ? 'scripts/[name].bundle.[chunkhash:4].js'
+      : 'scripts/[name].bundle.[chunkhash:8].min.js',
     chunkFilename: DEVELOPMENT
-      ? 'scripts/[name].chunk.[chunkhash:4].min.js'
-      : 'scripts/[name].chunk.[chunkhash:8].js',
+      ? 'scripts/[name].chunk.[chunkhash:4].js'
+      : 'scripts/[name].chunk.[chunkhash:8].min.js',
     //publicPath: '/'
   },
 
@@ -192,7 +192,7 @@ module.exports = {
 
   plugins: [
     new CommonsChunkPlugin({
-      names: ['main'],
+      names: ['main', 'vendor'],
       minChunks: Infinity,
     }),
 

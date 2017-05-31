@@ -94,7 +94,7 @@ module.exports = webpackMerge(webpackBase, {
       ServiceWorker: {
         output: 'service-worker.js',
         cacheName: 'gulp-temp',
-        navigateFallbackURL: '/',
+        // navigateFallbackURL: '/',
         events: true,
         minify: true,
       },
@@ -103,7 +103,7 @@ module.exports = webpackMerge(webpackBase, {
         // directory: './',
         NETWORK: null,
         events: true,
-        FALLBACK: {'/': '/'},
+        // FALLBACK: {'/': '/'},
         includeCrossOrigin: true,
       },
     }),

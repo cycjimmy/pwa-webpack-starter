@@ -1,6 +1,12 @@
-# Gulp-temp (a gulp template starter)
+# Pwa Webpack Starter
 
-Personal front-end automation solutions for webApp.
+Personal front-end solutions for progressive web app
+
+## Rename from "gulp-temp" (a gulp template starter)
+Front-end automation solutions for webApp
+
+## Based on
+webpack2, gulp, babel, sass, pug, offline plugin and lots of awesome modules and plugins
 
 ## Installation
 ```shell
@@ -11,7 +17,7 @@ $ yarn install
 
 ## Main directory structure
 ```text
-gulp-temp
+pwa-webpack-starter
  │
  ├─app/               # Project entry folder
  │   └─...
