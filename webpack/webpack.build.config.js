@@ -50,7 +50,7 @@ module.exports = webpackMerge(webpackBase, {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.resolve('./static', 'view', 'index.pug'),   // 模板位置
+      template: path.resolve('./static', 'view', 'index.pug'),
       //filename: '../index.html',
       favicon: path.resolve('./static', 'favicon.ico'),
       // chunks: ['manifest', 'main', 'vendor'],
@@ -75,26 +75,24 @@ module.exports = webpackMerge(webpackBase, {
 
       version: '[hash]',
       updateStrategy: 'changed',
-      autoUpdate: true,
+      // autoUpdate: true,
 
       caches: {
         main: [
-          'main.*.min.css',
-          'main.*.min.js',
-          'vendor.*.min.js',
+          'index.html',
         ],
         additional: [':externals:'],
-        optional: [':rest:'],
+        optional: [
+          ':rest:'
+        ]
       },
 
-      excludes: [
-        '/',
-      ],
+      // excludes: ['/',],
 
       ServiceWorker: {
         output: 'sw.js',
         cacheName: 'pwa-webpack-starter',
-        // navigateFallbackURL: '/',
+        navigateFallbackURL: './index.html',
         events: true,
         minify: true,
       },

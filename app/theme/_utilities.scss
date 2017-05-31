@@ -1,33 +1,40 @@
 /**
  * 中央居中
- * $offset 偏移量
+ * $offset
+ * $overwrite
+ * $top
+ * $right
+ * $bottom
+ * $left
  */
-@mixin fix-center($offset: -100%, $ex: false, $l: false, $t: false, $r: false, $b: false) {
+@mixin fix-center($offset: -100%, $overwrite: false, $top: false, $right: false, $bottom: false, $left: false) {
   position: absolute;
   margin: auto;
-  @if ($ex == false) {
+  @if ($overwrite == false) {
     left: $offset;
     top: $offset;
     right: $offset;
     bottom: $offset;
   } @else {
-    @if ($l) {
-      left: $l;
+    @if ($top) {
+      top: $top;
     }
-    @if ($t) {
-      top: $t;
+    @if ($right) {
+      right: $right;
     }
-    @if ($r) {
-      right: $r;
+    @if ($bottom) {
+      bottom: $bottom;
     }
-    @if ($b) {
-      bottom: $b;
+    @if ($left) {
+      left: $left;
     }
   }
 }
 
 /**
  * flex容器内部元素对齐方法
+ * $mainAxis
+ * $crossAxis
  * 可选参数:false(默认), center(居中), flex-end(尾部)
  */
 @mixin flex-box-align($mainAxis:false, $crossAxis:false) {

@@ -13,14 +13,12 @@ import * as info from '../info.json';
 // service
 import MainService from './Main.service';
 
-
 export default class MainSctComponent {
   constructor() {
-    this.context = document.querySelector('main');         //上下文
+    this.context = document.querySelector('main');
   }
 
   load() {
-    //新建一个容器oPopup
     let
       eContext = this.context
     ;

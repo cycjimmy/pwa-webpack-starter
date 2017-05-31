@@ -17,10 +17,10 @@ if (!DEVELOPMENT) {
   });
 }
 
-if(DEVELOPMENT){
+if (DEVELOPMENT) {
   console.log('Development Mode');
 }
-if(PRODUCTION){
+if (PRODUCTION) {
   console.log('Production Mode');
 }
 
@@ -30,6 +30,17 @@ document.addEventListener('contextmenu', e => {
   e.preventDefault();
   return false;
 });
+
+// Promise extend
+Promise.prototype.finally = function (callback) {
+  let P = this.constructor;
+  return this.then(
+    value => P.resolve(callback()).then(() => value),
+    reason => P.resolve(callback()).then(() => {
+      throw reason;
+    })
+  );
+};
 
 // web page init
 document.addEventListener('DOMContentLoaded', () => {
