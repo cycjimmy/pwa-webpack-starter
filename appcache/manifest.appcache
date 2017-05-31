@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:64b04d2b80c0ef67139e4c545ab421ec94599aec
+#ver:8fba67591661b1426497fc086586c7e6a2005f8d
 #plugin:4.6.2
 
 CACHE:
@@ -10,13 +10,8 @@ CACHE:
 ../images/logos/logo128.d9b9a9.png
 ../images/logos/logo256.774d70.png
 ../images/logos/logo152.2b58bd.png
-../scripts/vendor.bundle.fd7eb847.js
-../scripts/main.bundle.a129cdc7.js
-../style/main.a129cdc7.min.css
+../scripts/main.bundle.7a63d118.min.js
+../scripts/vendor.bundle.bf759632.min.js
+../style/main.7a63d118.min.css
 ../favicon.ico
 ../
-
-
-
-FALLBACK:
-/ /
