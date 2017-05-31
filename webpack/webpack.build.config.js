@@ -92,8 +92,8 @@ module.exports = webpackMerge(webpackBase, {
       ],
 
       ServiceWorker: {
-        output: 'service-worker.js',
-        cacheName: 'gulp-temp',
+        output: 'sw.js',
+        cacheName: 'pwa-webpack-starter',
         // navigateFallbackURL: '/',
         events: true,
         minify: true,

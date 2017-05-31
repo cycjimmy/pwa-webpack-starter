@@ -1,6 +1,6 @@
 {
   "lang": "en",
-  "name": "gulp-temp",
+  "name": "pwa-webpack-starter",
   "description": "A gulp template starter for webpack2, es6/7, sass, css-modules, pug...",
   "icons": [{
     "src": "./logos/logo128.png",
@@ -23,13 +23,13 @@
     "sizes": "256x256",
     "type": "image/png"
   }],
-  "short_name": "gulp-temp",
+  "short_name": "pwa-webpack-starter",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0a4f56",
   "theme_color": "#0a5644",
   "serviceworker": {
-    "src": "./service-worker.js"
+    "src": "./sw.js"
   }
 }

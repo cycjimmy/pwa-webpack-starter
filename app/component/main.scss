@@ -10,19 +10,21 @@
   }
 }
 
-h1 {
-  position: relative;
+.title {
   font-size: .24rem;
-  font-weight: bold;
 
-  span {
-    position: absolute;
-    bottom: .04rem;
-    font-size: $fontS;
-    font-style: italic;
-    padding-left: .04rem;
-    font-weight: normal;
-  }
+  font-weight: bold;
+}
+
+.version {
+  display: block;
+  padding: .04rem;
+
+  color: darken($fontColor, 15%);
+  font-size: $fontS;
+  //font-style: italic;
+  font-weight: normal;
+  text-align: center;
 }
 
 // logo animation
@@ -50,8 +52,6 @@ $picH: 1.2rem;
 
   perspective: $picH / 6;
   animation: rotation 4s linear 0s infinite normal both;
-  //animation-fill-mode: both;
-  //animation-play-state: running;
 
   &.animationPaused {
     animation-play-state: paused;
@@ -66,6 +66,7 @@ $picH: 1.2rem;
 .gotoGithub {
   margin-top: $space * 2;
   padding: $space $space * 2;
+
   border: .01rem solid $fontColor;
   border-radius: $radius;
   font-size: $fontL;
@@ -93,5 +94,4 @@ $picH: 1.2rem;
       }
     }
   }
-
 }

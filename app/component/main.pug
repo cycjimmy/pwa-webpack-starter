@@ -10,9 +10,9 @@ include ../share/icon.mixin.pug
 
 div(class=style.logo)
   img(class=style.logoImg src=logoSvg)
-h1
+h1(class=style.title)
   | #{info.title}
-  span #{info.version}
+  span(class=style.version) #{info.version}
 
 p(class=style.lead) #{info.lead}
 
