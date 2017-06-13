@@ -64,7 +64,7 @@ export default function ({
         if (this.readyState !== 4) {
           return;
         }
-        if (this.status === 200) {
+        if (this.status >= 200 && this.status < 400) {
           console.log(this.response);
           resolve(this.response);
         } else {

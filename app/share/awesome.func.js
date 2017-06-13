@@ -32,6 +32,13 @@ const isString = (str) => {
 };
 
 /**
+ * 判断是否object
+ * @param o
+ * @returns {boolean}
+ */
+const isObject = o => Object.prototype.toString.call(o) === '[object Object]';
+
+/**
  * 取得url相对路径根目录
  * @returns {string|*}
  */
@@ -117,6 +124,7 @@ export {
   firstUpperCase,
   strToCamel,
   isString,
+  isObject,
   getUrlRelativeDir,
   dispatch,
   siblingFilter,
