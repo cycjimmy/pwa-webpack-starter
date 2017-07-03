@@ -1,6 +1,6 @@
 {
   "name": "pwa-webpack-starter",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Pwa webpack starter for webpack2, gulp, es6/7, sass, css-modules, pug, offline plugin...",
   "main": "index.js",
   "scripts": {
@@ -71,7 +71,7 @@
     "uglifyjs-webpack-plugin": "^0.4.3",
     "url-loader": "^0.5.9",
     "web-app-manifest-loader": "^0.1.1",
-    "webpack": "^2.6.1",
+    "webpack": "^3.0.0",
     "webpack-chunk-hash": "^0.4.0",
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "^4.1.0",
