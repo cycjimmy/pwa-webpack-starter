@@ -38,6 +38,11 @@ module.exports = webpackMerge(webpackBase, {
             styleLoadersConfig.cssLoader,
             {
               loader: 'postcss-loader',
+              options: {
+                config: {
+                  path: 'webpack/postcss.config.js'
+                },
+              },
             },
             styleLoadersConfig.sassLoader,
           ],
@@ -144,13 +149,6 @@ module.exports = webpackMerge(webpackBase, {
       filename: 'style/[name].[chunkhash:8].min.css',
       disable: false,
       allChunks: true,
-    }),
-
-    new LoaderOptionsPlugin({
-      options: {
-        context: '/',
-        postcss: styleLoadersConfig.postcssOptions,
-      },
     }),
 
     new BrowserSyncPlugin(browserSyncConfig({
