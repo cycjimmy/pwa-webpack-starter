@@ -3,7 +3,7 @@
  */
 
 const
-  autoprefixer = require('autoprefixer')
+  path = require('path')
   , PRODUCTION = process.env.NODE_ENV === 'production'       // 生产模式
   ;
 
@@ -22,6 +22,14 @@ module.exports = options => {
         modules: true,
         localIdentName: cssIdentifier,
       }
+    },
+    postLoader: {
+      loader: 'postcss-loader',
+      options: {
+        config: {
+          path: path.resolve('webpack', 'postcss.config.js'),
+        },
+      },
     },
     sassLoader: {
       loader: 'sass-loader',

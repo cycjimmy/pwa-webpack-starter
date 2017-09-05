@@ -1,6 +1,6 @@
 {
   "title": "Pwa Webpack Starter",
-  "version": "v0.9.2",
+  "version": "v0.9.3",
   "lead": "Pwa webpack starter for webpack, gulp, es6/7, sass, css-modules, pug, offline plugin...",
   "repository": "https://github.com/cycjimmy/pwa-webpack-starter",
   "lastUpdated": "Sept 5, 2017"

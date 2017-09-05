@@ -36,14 +36,7 @@ module.exports = webpackMerge(webpackBase, {
           fallback: 'style-loader',
           use: [
             styleLoadersConfig.cssLoader,
-            {
-              loader: 'postcss-loader',
-              options: {
-                config: {
-                  path: 'webpack/postcss.config.js'
-                },
-              },
-            },
+            styleLoadersConfig.postLoader,
             styleLoadersConfig.sassLoader,
           ],
         })
