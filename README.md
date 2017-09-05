@@ -1,5 +1,7 @@
 # Pwa Webpack Starter
 
+[![Build Status](https://travis-ci.org/cycjimmy/pwa-webpack-starter.svg?branch=master)](https://travis-ci.org/cycjimmy/pwa-webpack-starter)
+
 Personal front-end solutions for progressive web app
 
 ## Rename from "gulp-temp" (a gulp template starter)
