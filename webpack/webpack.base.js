@@ -55,8 +55,12 @@ module.exports = {
       // Scripts
       {
         test: /\.js$/,
-        include: path.resolve('app'),
-        exclude: /node_modules/,
+        include: [
+          path.resolve('app')
+        ],
+        exclude: [
+          path.resolve('node_modules'),
+        ],
         loader: 'babel-loader',
       },
 
@@ -117,8 +121,12 @@ module.exports = {
       // Svg icons
       {
         test: /\.svg$/,
-        exclude: /node_modules/,
-        include: path.resolve('static', 'images', 'icons'),
+        exclude: [
+          path.resolve('node_modules'),
+        ],
+        include: [
+          path.resolve('static', 'images', 'icons')
+        ],
         use: [
           {
             loader: 'file-loader',
@@ -151,7 +159,9 @@ module.exports = {
       // Font
       {
         test: /\.(eot|ttf|woff|woff2)$/,
-        exclude: /node_modules/,
+        exclude: [
+          path.resolve('node_modules'),
+        ],
         use: [
           {
             loader: 'url-loader',
@@ -170,7 +180,9 @@ module.exports = {
           path.resolve('app'),
           path.resolve('static'),
         ],
-        exclude: /node_modules/,
+        exclude: [
+          path.resolve('node_modules'),
+        ],
         loader: 'pug-loader',
       },
 
@@ -180,7 +192,9 @@ module.exports = {
         include: [
           path.resolve('static'),
         ],
-        exclude: /node_modules/,
+        exclude: [
+          path.resolve('node_modules'),
+        ],
         use: [
           {
             loader: 'file-loader',

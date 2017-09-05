@@ -23,7 +23,7 @@ module.exports = webpackMerge(webpackBase, {
   bail: true,
 
   output: {
-    path: path.resolve('./build'),
+    path: path.resolve('build'),
   },
 
   module: {
@@ -31,7 +31,12 @@ module.exports = webpackMerge(webpackBase, {
       // Style
       {
         test: /\.scss$/,
-        exclude: /node_modules/,
+        exclude: [
+          path.resolve('node_modules'),
+        ],
+        include: [
+          path.resolve('app'),
+        ],
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
